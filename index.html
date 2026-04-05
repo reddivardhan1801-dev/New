@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#161616">
+<title>RankSense – Free Rank Predictor 2025 | JEE Main, NEET, AP EAPCET, TS EAPCET, AP ECET</title>
+<meta name="description" content="Free rank predictor for JEE Main, JEE Advanced, NEET, AP EAPCET, TS EAPCET, AP ECET 2025. Enter your marks and get an estimated rank, percentile, college options, and next steps — based on previous year official data.">
+<meta name="keywords" content="JEE Main rank predictor 2025, NEET rank predictor, AP EAPCET rank prediction, TS EAPCET rank, AP ECET rank calculator, rank vs marks JEE, NEET rank estimate">
+<meta property="og:title" content="RankSense – Free Rank Predictor 2025 | JEE, NEET, EAPCET, ECET">
+<meta property="og:description" content="Predict your rank instantly using previous year official data. Free educational tool for students appearing in JEE Main, NEET, AP EAPCET, TS EAPCET, AP ECET.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────── */
+:root{
+  --bg:#161616; --surface:#1e1e1e; --surface2:#252525; --surface3:#2a2a2a;
+  --border:#2e2e2e; --border2:#3d3d3d;
+  --text:#e8e6e1; --muted:#8a8a8a; --muted2:#5e5e5e;
+  --accent:#c8f550; --accent-dk:#a8d040;
+  --accent2:#50c8f5; --accent2-dk:#30a8d5;
+  --white:#fff; --danger:#f55050; --warn:#f5a550; --success:#50d590;
+  --fd:'Bebas Neue',sans-serif;
+  --fb:'DM Sans',sans-serif;
+  --fm:'Courier Prime',monospace;
+  --r4:4px; --r8:8px; --r12:12px;
+  --sh:0 4px 24px rgba(0,0,0,.45);
+  --sh-sm:0 2px 12px rgba(0,0,0,.35);
+}
+/* ─────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:var(--fb); font-size:15px;
+  line-height:1.75; overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body::after{
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:900;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  opacity:.5;
+}
+a{color:var(--accent2); text-decoration:none;}
+a:hover{text-decoration:underline;}
+img{max-width:100%; display:block;}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--accent);color:#111;padding:8px 16px;font-size:14px;z-index:9999;}
+.skip-link:focus{left:0;}
+
+/* ─────────────────────────────────────────────
+   NAVIGATION
+───────────────────────────────────────────── */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  height:56px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 28px;
+  background:rgba(22,22,22,.96); backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:var(--fd);font-size:21px;letter-spacing:3px;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;padding:4px 0;}
+.nav-links a:hover{color:var(--accent);}
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;}
+.nav-mobile{display:none;position:fixed;top:56px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:8px 0;z-index:490;flex-direction:column;}
+.nav-mobile a{display:block;padding:14px 28px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border);transition:background .15s;}
+.nav-mobile a:hover{background:var(--surface2);color:var(--text);}
+.nav-mobile.open{display:flex;}
+
+/* ─────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────── */
+#hero{
+  min-height:100svh; padding-top:56px;
+  display:grid; grid-template-columns:1fr 1fr;
+}
+.hero-left{
+  padding:52px 52px 48px; display:flex; flex-direction:column;
+  justify-content:center; border-right:1px solid var(--border);
+}
+.hero-right{
+  padding:40px 48px; display:flex; flex-direction:column;
+  justify-content:center; background:var(--surface);
+}
+.eyebrow{
+  font-family:var(--fm); font-size:10px; letter-spacing:4px;
+  color:var(--accent); text-transform:uppercase;
+  margin-bottom:18px; display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{content:'';width:22px;height:1px;background:var(--accent);flex-shrink:0;}
+h1{
+  font-family:var(--fd); color:var(--white);
+  font-size:clamp(54px,6.5vw,98px); line-height:.92; letter-spacing:2px;
+  margin-bottom:20px;
+}
+h1 em{font-style:normal;color:var(--accent);}
+.hero-desc{font-size:14px;color:var(--muted);max-width:400px;margin-bottom:28px;font-weight:300;line-height:1.85;}
+.step-row{display:flex;flex-wrap:wrap;gap:8px;}
+.step-pill{
+  display:flex;align-items:center;gap:7px;
+  font-size:11px;color:var(--muted);letter-spacing:.5px;
+  background:var(--surface2);border:1px solid var(--border);
+  padding:6px 12px;border-radius:20px;
+}
+.step-num{
+  width:17px;height:17px;border-radius:50%;
+  border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;
+  font-family:var(--fm);font-size:9px;color:var(--accent);flex-shrink:0;
+}
+
+/* ─────────────────────────────────────────────
+   PREDICTOR FORM
+───────────────────────────────────────────── */
+.predictor-tag{
+  font-family:var(--fm);font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:22px;
+  display:flex;align-items:center;gap:8px;
+}
+.predictor-tag::before{content:'';width:14px;height:1px;background:var(--muted);flex-shrink:0;}
+.form-row{margin-bottom:14px;}
+.form-row label{
+  display:flex;align-items:center;gap:6px;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:7px;font-family:var(--fm);
+}
+.form-row select,
+.form-row input[type="number"]{
+  width:100%;background:var(--bg);border:1px solid var(--border2);
+  color:var(--text);padding:13px 14px;
+  font-family:var(--fb);font-size:15px;
+  border-radius:var(--r4);outline:none;
+  transition:border-color .2s;-webkit-appearance:none;appearance:none;
+}
+.form-row select:focus,.form-row input:focus{border-color:var(--accent);}
+.form-row select option{background:var(--surface2);}
+.form-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ap-fields{display:none;}
+.ap-fields.show{display:block;}
+.formula-note{
+  background:rgba(80,200,245,.07);border-left:3px solid var(--accent2);
+  padding:11px 14px;font-size:11px;color:var(--muted);
+  font-family:var(--fm);margin-bottom:14px;line-height:1.8;
+  border-radius:0 var(--r4) var(--r4) 0;
+}
+.formula-note strong{color:var(--accent2);}
+/* Info tooltip */
+.info-btn{
+  width:15px;height:15px;border-radius:50%;
+  border:1px solid var(--muted2);background:none;color:var(--muted2);
+  font-size:9px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
+  position:relative;font-family:var(--fm);transition:all .2s;flex-shrink:0;
+}
+.info-btn:hover,.info-btn:focus{border-color:var(--accent2);color:var(--accent2);outline:none;}
+.info-btn .tip{
+  display:none;position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+  background:#111;border:1px solid var(--accent2);color:var(--text);
+  font-size:11px;line-height:1.55;padding:10px 13px;width:240px;z-index:200;
+  font-family:var(--fb);font-weight:300;letter-spacing:0;text-transform:none;
+  border-radius:var(--r4);box-shadow:var(--sh);
+}
+.info-btn:hover .tip,.info-btn:focus .tip{display:block;}
+/* Predict button */
+.btn-predict{
+  width:100%;padding:16px;background:var(--accent);color:#111;
+  border:none;font-family:var(--fd);font-size:21px;letter-spacing:3px;
+  cursor:pointer;transition:background .2s,transform .15s;
+  margin-top:6px;border-radius:var(--r4);
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.btn-predict:hover{background:var(--accent-dk);transform:translateY(-1px);}
+.btn-predict:active{transform:translateY(0);}
+.btn-predict svg{width:18px;height:18px;flex-shrink:0;}
+
+/* ─────────────────────────────────────────────
+   RESULT BOX
+───────────────────────────────────────────── */
+#result-box{display:none;margin-top:16px;animation:fadeUp .4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.result-header{
+  background:var(--accent);padding:16px 18px;
+  border-radius:var(--r4) var(--r4) 0 0;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:12px;
+}
+.result-header-lbl{font-family:var(--fm);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#111;margin-bottom:3px;}
+.result-rank-num{font-family:var(--fd);font-size:38px;color:#111;line-height:1;}
+.result-pct-badge{font-family:var(--fd);font-size:20px;color:#111;text-align:right;}
+.result-pct-badge small{display:block;font-family:var(--fm);font-size:9px;letter-spacing:1px;opacity:.7;text-transform:uppercase;}
+.result-body{
+  background:var(--bg);border:1px solid var(--border2);border-top:none;
+  padding:16px;border-radius:0 0 var(--r4) var(--r4);
+}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.r-pill{
+  background:var(--surface);border:1px solid var(--border);
+  padding:10px 12px;border-radius:var(--r4);
+}
+.r-pill strong{
+  display:block;font-family:var(--fm);font-size:9px;
+  color:var(--muted2);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;
+}
+.r-pill span{font-size:13px;color:var(--text);}
+.result-meaning{margin-top:4px;padding-top:14px;border-top:1px solid var(--border);}
+.result-meaning h4{font-family:var(--fm);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:10px;}
+.college-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.c-tag{
+  background:rgba(80,200,245,.1);border:1px solid rgba(80,200,245,.22);
+  color:var(--accent2);font-size:11px;padding:4px 10px;border-radius:14px;
+}
+.result-steps{list-style:none;margin-top:8px;}
+.result-steps li{
+  padding:7px 0;border-bottom:1px solid var(--border);
+  font-size:12px;color:var(--text);font-weight:300;line-height:1.6;
+  padding-left:16px;position:relative;
+}
+.result-steps li:last-child{border-bottom:none;}
+.result-steps li::before{content:'→';position:absolute;left:0;color:var(--accent);font-family:var(--fm);}
+.result-disc{
+  font-size:10px;color:var(--muted2);margin-top:12px;
+  padding:10px 12px;background:rgba(245,80,80,.05);
+  border-radius:var(--r4);border:1px solid rgba(245,80,80,.15);
+  line-height:1.65;
+}
+
+/* ─────────────────────────────────────────────
+   SECTION LAYOUT
+───────────────────────────────────────────── */
+section{position:relative;z-index:1;}
+.sec{padding:80px 52px;}
+.sec-sm{padding:60px 52px;}
+.wrap{max-width:1180px;margin:0 auto;}
+h2{
+  font-family:var(--fd);color:var(--white);
+  font-size:clamp(38px,4.8vw,66px);letter-spacing:2px;line-height:1;
+  margin-bottom:18px;
+}
+h3{
+  font-family:var(--fd);color:var(--white);
+  font-size:clamp(22px,2.5vw,28px);letter-spacing:1.5px;margin-bottom:10px;
+}
+h4{
+  font-family:var(--fm);font-size:11px;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--accent2);margin-bottom:10px;
+}
+p{color:var(--muted);margin-bottom:14px;font-weight:300;font-size:14px;line-height:1.85;}
+p.lead{font-size:15px;color:var(--text);font-weight:300;line-height:1.85;}
+.divider{height:1px;background:var(--border);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+/* ─────────────────────────────────────────────
+   CARDS & COMPONENTS
+───────────────────────────────────────────── */
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  padding:28px;border-radius:var(--r8);
+}
+.card-accent{border-color:var(--accent);background:rgba(200,245,80,.03);}
+.card-info{border-color:var(--accent2);background:rgba(80,200,245,.03);}
+.card-warn{border-color:rgba(245,165,80,.3);background:rgba(245,165,80,.04);}
+.card-danger{border-color:rgba(245,80,80,.25);background:rgba(245,80,80,.04);}
+.stat-card{
+  background:var(--surface);border:1px solid var(--border);
+  padding:22px;border-radius:var(--r8);position:relative;overflow:hidden;
+}
+.stat-card::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);}
+.stat-num{font-family:var(--fd);font-size:38px;color:var(--white);line-height:1;margin-bottom:4px;}
+.stat-lbl{font-size:11px;color:var(--muted);letter-spacing:.5px;}
+/* Feature list */
+.feat-list{list-style:none;}
+.feat-list li{
+  display:flex;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--border);
+  color:var(--text);font-size:13px;font-weight:300;line-height:1.65;
+}
+.feat-list li:last-child{border-bottom:none;}
+.feat-list li::before{content:'→';color:var(--accent);flex-shrink:0;font-family:var(--fm);margin-top:2px;}
+/* Bullet list */
+.blist{list-style:none;}
+.blist li{
+  padding:9px 0;border-bottom:1px solid var(--border);
+  font-size:13px;font-weight:300;color:var(--text);
+  padding-left:20px;position:relative;line-height:1.65;
+}
+.blist li:last-child{border-bottom:none;}
+.blist li::before{content:'//';position:absolute;left:0;color:var(--accent);font-family:var(--fm);font-size:10px;top:11px;}
+/* Callout boxes */
+.tip-box{
+  background:rgba(200,245,80,.05);border-left:3px solid var(--accent);
+  padding:14px 18px;margin:18px 0;border-radius:0 var(--r4) var(--r4) 0;
+  font-size:13px;color:var(--text);line-height:1.75;
+}
+.warn-box{
+  background:rgba(245,165,80,.06);border-left:3px solid var(--warn);
+  padding:14px 18px;margin:18px 0;border-radius:0 var(--r4) var(--r4) 0;
+  font-size:13px;color:var(--text);line-height:1.75;
+}
+.info-box{
+  background:rgba(80,200,245,.06);border-left:3px solid var(--accent2);
+  padding:14px 18px;margin:18px 0;border-radius:0 var(--r4) var(--r4) 0;
+  font-size:13px;color:var(--text);line-height:1.75;
+}
+.danger-box{
+  background:rgba(245,80,80,.05);border-left:3px solid var(--danger);
+  padding:14px 18px;margin:18px 0;border-radius:0 var(--r4) var(--r4) 0;
+  font-size:13px;color:var(--text);line-height:1.75;
+}
+/* Data tables */
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px;}
+.data-table th{
+  text-align:left;padding:9px 12px;font-family:var(--fm);
+  font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted2);border-bottom:1px solid var(--border);
+  background:var(--surface2);
+}
+.data-table td{
+  padding:9px 12px;border-bottom:1px solid var(--border);
+  color:var(--text);font-weight:300;vertical-align:top;
+}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table .rank-val{font-family:var(--fm);color:var(--accent);font-size:12px;}
+.data-table .college-val{color:var(--accent2);font-size:12px;}
+/* Section tag */
+.section-tag{
+  font-family:var(--fm);font-size:10px;letter-spacing:4px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-tag::before{content:'';width:20px;height:1px;background:var(--accent);flex-shrink:0;}
+/* Trust badge */
+.trust-row{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;
+}
+.trust-badge{
+  display:flex;align-items:center;gap:7px;
+  background:var(--surface2);border:1px solid var(--border);
+  padding:7px 14px;border-radius:20px;font-size:11px;
+  font-family:var(--fm);color:var(--muted);letter-spacing:.5px;
+}
+.trust-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+
+/* ─────────────────────────────────────────────
+   EXAM TABS
+───────────────────────────────────────────── */
+.tab-wrap{border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;display:flex;}
+.tab-wrap::-webkit-scrollbar{display:none;}
+.tab-btn{
+  padding:12px 18px;background:none;border:none;
+  color:var(--muted);font-family:var(--fm);font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;
+  white-space:nowrap;transition:color .2s,border-color .2s;margin-bottom:-1px;flex-shrink:0;
+}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+.tab-btn:hover{color:var(--text);}
+.tab-panel{display:none;padding-top:28px;}
+.tab-panel.active{display:block;}
+.tab-two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:8px;}
+
+/* ─────────────────────────────────────────────
+   BLOG
+───────────────────────────────────────────── */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+.blog-card{
+  background:var(--surface);border:1px solid var(--border);
+  padding:26px;border-radius:var(--r8);cursor:pointer;
+  transition:border-color .22s,transform .25s;display:flex;flex-direction:column;
+}
+.blog-card:hover{border-color:var(--accent);transform:translateY(-4px);}
+.blog-cat{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--accent2);text-transform:uppercase;margin-bottom:8px;}
+.blog-meta{font-family:var(--fm);font-size:10px;color:var(--muted2);margin-bottom:10px;letter-spacing:.5px;}
+.blog-card h3{font-size:17px;margin-bottom:10px;line-height:1.35;flex:1;}
+.blog-card p{font-size:12px;margin-bottom:0;}
+.blog-read{
+  margin-top:16px;font-family:var(--fm);font-size:10px;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;
+  display:flex;align-items:center;gap:6px;
+}
+.blog-read svg{width:13px;height:13px;}
+
+/* ─────────────────────────────────────────────
+   ARTICLE MODAL
+───────────────────────────────────────────── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:800;overflow-y:auto;}
+.modal-overlay.open{display:block;}
+.modal-wrap{min-height:100%;display:flex;align-items:flex-start;justify-content:center;padding:80px 24px 48px;}
+.modal-box{
+  width:100%;max-width:820px;background:var(--surface);
+  border:1px solid var(--border2);border-radius:var(--r8);overflow:hidden;
+}
+.modal-head{
+  background:var(--surface2);padding:18px 28px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:10;
+}
+.modal-head-cat{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--accent2);text-transform:uppercase;}
+.modal-close{
+  background:none;border:1px solid var(--border2);color:var(--muted);
+  font-size:16px;cursor:pointer;font-family:var(--fm);
+  width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+  border-radius:var(--r4);transition:border-color .2s,color .2s;
+}
+.modal-close:hover{border-color:var(--accent);color:var(--accent);}
+.modal-body{padding:36px 32px;}
+.modal-body h1{font-family:var(--fd);font-size:clamp(26px,4vw,42px);color:var(--white);letter-spacing:1.5px;margin-bottom:8px;line-height:1.05;}
+.modal-body .art-meta{font-family:var(--fm);font-size:11px;color:var(--muted2);margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.modal-body h2{font-size:clamp(20px,2.5vw,26px);margin:28px 0 12px;}
+.modal-body h3{font-family:var(--fm);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin:22px 0 8px;}
+.modal-body p{font-size:14px;margin-bottom:16px;line-height:1.85;}
+.modal-body ul{list-style:none;margin:0 0 20px;}
+.modal-body ul li{
+  padding:9px 0;border-bottom:1px solid var(--border);
+  font-size:13px;color:var(--text);font-weight:300;
+  padding-left:18px;position:relative;line-height:1.65;
+}
+.modal-body ul li::before{content:'→';position:absolute;left:0;color:var(--accent);}
+.modal-body ul li:last-child{border-bottom:none;}
+
+/* ─────────────────────────────────────────────
+   LEGAL & CONTACT
+───────────────────────────────────────────── */
+.legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.cf input,.cf textarea,.cf select{
+  width:100%;background:var(--surface2);border:1px solid var(--border2);
+  color:var(--text);padding:13px 16px;font-family:var(--fb);font-size:14px;
+  outline:none;margin-bottom:14px;transition:border-color .2s;
+  -webkit-appearance:none;border-radius:var(--r4);
+}
+.cf input:focus,.cf textarea:focus{border-color:var(--accent);}
+.cf textarea{resize:vertical;min-height:110px;}
+.btn-send{
+  background:none;border:1px solid var(--accent);color:var(--accent);
+  padding:13px 32px;font-family:var(--fm);font-size:12px;
+  letter-spacing:3px;text-transform:uppercase;cursor:pointer;
+  transition:background .2s,color .2s;border-radius:var(--r4);
+}
+.btn-send:hover{background:var(--accent);color:#111;}
+.contact-info dt{font-family:var(--fm);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-top:16px;margin-bottom:4px;}
+.contact-info dd{font-size:14px;color:var(--text);font-weight:300;}
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+footer{
+  border-top:1px solid var(--border);
+  padding:36px 52px;position:relative;z-index:1;
+}
+.footer-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:20px;}
+.footer-logo{font-family:var(--fd);font-size:18px;letter-spacing:3px;color:var(--white);}
+.footer-logo span{color:var(--accent);}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--accent);}
+.footer-bottom{border-top:1px solid var(--border);padding-top:18px;}
+.footer-disc{font-size:11px;color:var(--muted2);font-family:var(--fm);line-height:1.7;margin-bottom:10px;}
+.footer-copy{font-size:11px;color:var(--muted2);font-family:var(--fm);}
+
+/* ─────────────────────────────────────────────
+   TOAST
+───────────────────────────────────────────── */
+#toast{
+  display:none;position:fixed;bottom:24px;left:50%;
+  transform:translateX(-50%);background:var(--danger);color:#fff;
+  padding:12px 20px;border-radius:var(--r4);font-family:var(--fm);
+  font-size:13px;z-index:9999;letter-spacing:1px;box-shadow:var(--sh);
+  white-space:nowrap;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media(max-width:1024px){
+  .two-col,.three-col,.tab-two-col,.legal-grid,.contact-grid{grid-template-columns:1fr;}
+  .blog-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  /* Nav */
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+  nav{padding:0 18px;}
+  /* Hero: predictor first on mobile */
+  #hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{
+    display:none; /* Hide hero copy — predictor is priority */
+  }
+  .hero-right{
+    padding:68px 18px 28px;min-height:100svh;background:var(--bg);
+  }
+  .hero-right::before{
+    content:'RANK SENSE';display:block;
+    font-family:var(--fd);font-size:26px;letter-spacing:3px;
+    color:var(--white);margin-bottom:4px;
+  }
+  .hero-right::after{
+    content:'Free Rank Predictor — JEE · NEET · EAPCET · ECET';
+    display:block;font-size:11px;font-family:var(--fm);
+    letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:22px;
+  }
+  /* Sections */
+  .sec,.sec-sm{padding:52px 18px;}
+  /* Blog */
+  .blog-grid{grid-template-columns:1fr;}
+  /* Inputs */
+  .form-cols{grid-template-columns:1fr;}
+  .form-row input,.form-row select{font-size:16px !important;padding:15px 14px;} /* Prevent iOS zoom */
+  .btn-predict{font-size:20px;padding:17px;}
+  /* Result */
+  .result-grid{grid-template-columns:1fr 1fr;}
+  /* Footer */
+  footer{padding:28px 18px;}
+  .footer-top{flex-direction:column;align-items:flex-start;}
+  /* Modal */
+  .modal-wrap{padding:60px 0 0;}
+  .modal-box{border-radius:var(--r8) var(--r8) 0 0;min-height:75vh;}
+  .modal-body{padding:24px 18px;}
+}
+@media(max-width:480px){
+  .result-grid{grid-template-columns:1fr;}
+  h2{font-size:clamp(32px,9vw,50px);}
+  .three-col{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#predictor" class="skip-link">Skip to Rank Predictor</a>
+<div id="toast" role="alert" aria-live="assertive"></div>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<nav role="navigation" aria-label="Main navigation">
+  <a href="#" class="nav-logo" aria-label="RankSense Home">RANK<span>SENSE</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="#about">About</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#exams">Exams</a></li>
+    <li><a href="#blog">Articles</a></li>
+    <li><a href="#legal">Legal</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#how-it-works" onclick="closeMenu()">How It Works</a>
+  <a href="#exams" onclick="closeMenu()">Exams</a>
+  <a href="#blog" onclick="closeMenu()">Articles</a>
+  <a href="#legal" onclick="closeMenu()">Legal</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section id="hero" aria-labelledby="h1-heading">
+  <!-- Left: Headline copy -->
+  <div class="hero-left">
+    <div class="eyebrow">Free Tool · 2025 Data · No Sign-Up Required</div>
+    <h1 id="h1-heading">PREDICT<br><em>YOUR</em><br>RANK.</h1>
+    <p class="hero-desc">Get an instant estimated rank for JEE Main, JEE Advanced, NEET, AP EAPCET, TS EAPCET, or AP ECET — based on 5+ years of official results data. Know where you stand before official results are declared.</p>
+    <div class="step-row">
+      <div class="step-pill"><span class="step-num">1</span> Enter Your Marks</div>
+      <div class="step-pill"><span class="step-num">2</span> Select Exam</div>
+      <div class="step-pill"><span class="step-num">3</span> Get Rank Instantly</div>
+    </div>
+  </div>
+
+  <!-- Right: Predictor -->
+  <div class="hero-right" id="predictor">
+    <div class="predictor-tag">Rank Predictor</div>
+
+    <!-- Exam -->
+    <div class="form-row">
+      <label for="exam-sel">Select Your Exam</label>
+      <select id="exam-sel" onchange="onExamChange()" aria-required="true">
+        <option value="">— Choose an Exam —</option>
+        <option value="jee-main">JEE Main (out of 300)</option>
+        <option value="jee-advanced">JEE Advanced (out of 360)</option>
+        <option value="neet">NEET UG (out of 720)</option>
+        <option value="ap-eapcet">AP EAPCET (out of 160)</option>
+        <option value="ts-eapcet">TS EAPCET (out of 160)</option>
+        <option value="ecet">AP ECET (out of 200)</option>
+      </select>
+    </div>
+
+    <!-- Default marks (JEE / NEET / TS / ECET) -->
+    <div class="form-row" id="default-row">
+      <label for="marks-inp" id="marks-lbl">Your Score / Marks</label>
+      <input type="number" id="marks-inp" placeholder="e.g. 220" min="0" max="720" inputmode="decimal" aria-required="true">
+    </div>
+
+    <!-- AP EAPCET dual-field -->
+    <div class="ap-fields" id="ap-fields">
+      <div class="formula-note">
+        <strong>AP EAPCET Final Score</strong> =<br>
+        (0.75 × EAPCET Normalized Marks) + (0.25 × Intermediate %)<br>
+        <span style="color:var(--muted);">Enter both values — final score calculated automatically.</span>
+      </div>
+      <div class="form-cols">
+        <div class="form-row">
+          <label for="ap-norm">EAPCET Normalized Marks <span style="color:var(--accent);font-size:9px;">(max 160)</span></label>
+          <input type="number" id="ap-norm" placeholder="e.g. 110" min="0" max="160" step="0.01" inputmode="decimal">
+        </div>
+        <div class="form-row">
+          <label for="ap-inter">Intermediate % <span style="color:var(--accent);font-size:9px;">(0–100)</span></label>
+          <input type="number" id="ap-inter" placeholder="e.g. 92.5" min="0" max="100" step="0.01" inputmode="decimal">
+        </div>
+      </div>
+    </div>
+
+    <!-- Category -->
+    <div class="form-row">
+      <label for="cat-sel">
+        Category
+        <button class="info-btn" tabindex="0" aria-label="Category information" type="button">i
+          <span class="tip">For AP EAPCET, TS EAPCET, and AP ECET — category does NOT affect rank calculation. Rank is based purely on your exam score. Category matters only during counselling for seat reservation.</span>
+        </button>
+      </label>
+      <select id="cat-sel">
+        <option value="general">General / OC</option>
+        <option value="obc">OBC-NCL / BC</option>
+        <option value="sc">SC</option>
+        <option value="st">ST</option>
+        <option value="ews">EWS</option>
+      </select>
+    </div>
+
+    <button class="btn-predict" onclick="doPredict()" aria-label="Predict my rank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      PREDICT MY RANK
+    </button>
+
+    <!-- Result -->
+    <div id="result-box" role="region" aria-live="polite" aria-label="Rank prediction result">
+      <div class="result-header">
+        <div>
+          <div class="result-header-lbl">// Predicted Rank Range</div>
+          <div class="result-rank-num" id="res-rank">—</div>
+        </div>
+        <div class="result-pct-badge">
+          <span id="res-pct-num"></span>
+          <small id="res-pct-lbl"></small>
+        </div>
+      </div>
+      <div class="result-body">
+        <div class="result-grid">
+          <div class="r-pill" id="pill-pct"><strong>Percentile (Est.)</strong><span id="res-percentile">—</span></div>
+          <div class="r-pill"><strong>Score Used</strong><span id="res-score">—</span></div>
+          <div class="r-pill"><strong>Category</strong><span id="res-cat">—</span></div>
+          <div class="r-pill"><strong>Competitive Zone</strong><span id="res-zone">—</span></div>
+        </div>
+        <div class="result-meaning">
+          <h4>What This Rank Means</h4>
+          <p id="res-meaning" style="font-size:13px;margin-bottom:12px;"></p>
+          <h4>Likely College Options</h4>
+          <div class="college-tags" id="res-colleges"></div>
+          <h4 style="margin-top:12px;">Recommended Next Steps</h4>
+          <ul class="result-steps" id="res-steps"></ul>
+        </div>
+        <div class="result-disc">
+          ⚠ <strong>Disclaimer:</strong> This prediction is an estimate based on previous year official data and is NOT an official result. Actual ranks depend on current year difficulty, candidate count, and normalization. Always verify from official sources: <strong>nta.ac.in · eapcet.apsche.ap.gov.in · tsche.ac.in</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════ -->
+<div class="divider"></div>
+<section id="about" class="sec" aria-labelledby="about-h">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <div class="section-tag">What Is RankSense</div>
+        <h2 id="about-h">YOUR EXAM.<br>YOUR RANK.<br>YOUR FUTURE.</h2>
+        <p class="lead">RankSense is a free, educational rank prediction tool designed for students preparing for India's most competitive entrance exams. We analyse your marks against 5+ years of official rank data to give you a realistic rank estimate — before official results are published.</p>
+        <p>Whether you just finished writing JEE Main, NEET, AP EAPCET, TS EAPCET, or AP ECET — or you are planning your preparation strategy months in advance — RankSense gives you the data-backed insights you need to take smart decisions quickly.</p>
+        <p>This tool is used by thousands of students every exam season to shortlist colleges, compare branch options, and plan their counselling strategy before official results are declared. All predictions are clearly labelled as estimates based on previous year trends and are never presented as official results.</p>
+        <div class="trust-row">
+          <div class="trust-badge"><div class="dot"></div>Last Updated: 2025</div>
+          <div class="trust-badge"><div class="dot"></div>Based on Previous Year Analysis</div>
+          <div class="trust-badge"><div class="dot"></div>No Sign-Up Required</div>
+          <div class="trust-badge"><div class="dot"></div>Completely Free</div>
+        </div>
+      </div>
+      <div>
+        <h4>Why Students Trust RankSense</h4>
+        <ul class="feat-list">
+          <li>Based on 5+ years of official NTA, APSCHE, and TSCHE rank data</li>
+          <li>Covers 6 major exams — JEE Main, JEE Advanced, NEET, AP EAPCET, TS EAPCET, AP ECET</li>
+          <li>AP EAPCET uses the official weighted formula: 0.75 × EAPCET + 0.25 × Inter %</li>
+          <li>Category-wise rank adjustment for JEE and NEET (General, OBC, SC, ST, EWS)</li>
+          <li>College suggestions from real JoSAA and state counselling data</li>
+          <li>Clear disclaimer on every result — no misleading or inflated claims</li>
+          <li>Mobile-first design — works perfectly on any smartphone</li>
+          <li>Completely free — no account, no sign-up, no payments</li>
+        </ul>
+        <div class="card card-info" style="margin-top:20px;">
+          <h4>Data Transparency</h4>
+          <p style="font-size:12px;margin-bottom:0;">All rank prediction data is sourced from published NTA score-vs-rank charts, APSCHE/TSCHE official result PDFs, and JoSAA opening/closing rank data from 2020–2024. We clearly label all data as approximate estimates based on previous year trends. Predictions should be used as guidance only — not as official results.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════ -->
+<div class="divider"></div>
+<section id="how-it-works" class="sec-sm" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="section-tag">The Science Behind It</div>
+    <h2 id="how-h">HOW RANK<br>PREDICTION WORKS</h2>
+    <p class="lead" style="max-width:680px;">Rank prediction is not guesswork — it is applied statistics. There is a clear, mathematically consistent relationship between your marks, the number of students who appeared, and the percentile distribution from previous years. Here is exactly how it works.</p>
+
+    <div class="two-col" style="margin-top:40px;">
+      <div>
+        <h4>Step 1 — Marks to Percentile</h4>
+        <p>Your <strong style="color:var(--text);">percentile</strong> tells you what percentage of candidates scored below you. If your percentile is 97, it means you scored higher than 97% of all candidates who appeared. NTA publishes official score-to-percentile mappings after every JEE Main and NEET session. We use these mappings combined with historical trend analysis to convert your marks to an estimated percentile range.</p>
+
+        <h4 style="margin-top:20px;">Step 2 — Percentile to Rank</h4>
+        <p>Your approximate rank is derived from the formula:<br>
+        <code style="background:var(--surface2);padding:6px 10px;border-radius:var(--r4);font-family:var(--fm);font-size:12px;color:var(--accent2);display:inline-block;margin:8px 0;">Rank ≈ Total Candidates × (1 − Percentile ÷ 100)</code><br>
+        For example: If 13 lakh students appeared in JEE Main 2024 and your percentile is 98.5, your estimated rank = 13,00,000 × 0.015 = <strong style="color:var(--accent);">~19,500</strong>. We apply this against historical percentile curves to give a realistic rank range rather than a false single number.</p>
+
+        <h4 style="margin-top:20px;">Step 3 — State Exams (EAPCET, ECET)</h4>
+        <p>For AP EAPCET, TS EAPCET, and AP ECET, rank is not percentile-based. It is direct merit-based ranking. For AP EAPCET, the final score formula is: <code style="background:var(--surface2);padding:4px 8px;border-radius:var(--r4);font-family:var(--fm);font-size:12px;color:var(--accent2);">(0.75 × EAPCET Marks) + (0.25 × Inter %)</code>. For TS EAPCET and AP ECET, rank is assigned purely based on normalized exam marks. We use 4–5 years of official rank lists to map marks to expected rank ranges.</p>
+
+        <div class="info-box">
+          <strong>Why we give ranges, not single numbers:</strong> Actual rank depends on how many students appeared that year, the paper difficulty, and normalization across sessions. Giving a single number like "your rank is 12,456" would be misleading. A range like "12,000–18,000" is honest and realistic.
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:20px;">
+          <h4>Example: JEE Main 2024 Approximate Trends</h4>
+          <p style="font-size:11px;color:var(--muted2);margin-bottom:12px;">Based on previous year NTA data — General Category</p>
+          <table class="data-table">
+            <thead><tr><th>Marks</th><th>Approx Rank</th><th>Percentile</th></tr></thead>
+            <tbody>
+              <tr><td>290–300</td><td class="rank-val">Top ~500</td><td>99.96+</td></tr>
+              <tr><td>270–289</td><td class="rank-val">~500–3,000</td><td>99.75–99.96</td></tr>
+              <tr><td>250–269</td><td class="rank-val">~3,000–10,000</td><td>99.2–99.75</td></tr>
+              <tr><td>220–249</td><td class="rank-val">~10,000–30,000</td><td>97.7–99.2</td></tr>
+              <tr><td>190–219</td><td class="rank-val">~30,000–65,000</td><td>95–97.7</td></tr>
+              <tr><td>160–189</td><td class="rank-val">~65,000–1,50,000</td><td>88–95</td></tr>
+              <tr><td>Below 150</td><td class="rank-val">1,50,000+</td><td>Below 88</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:10px;font-family:var(--fm);color:var(--muted2);margin-top:8px;margin-bottom:0;">*Based on previous year official NTA data. Current year may vary.</p>
+        </div>
+
+        <div class="card card-danger">
+          <h4 style="color:var(--danger);">Important Disclaimer</h4>
+          <p style="font-size:13px;margin-bottom:10px;">RankSense predictions are estimates based on previous year trends and are <strong style="color:var(--danger);">NOT official results</strong>. Several factors affect your actual rank that this tool cannot predict:</p>
+          <ul class="blist">
+            <li>Current year paper difficulty level</li>
+            <li>Total number of candidates who appeared</li>
+            <li>NTA session-based normalization adjustments</li>
+            <li>Any policy changes by NTA, APSCHE, or TSCHE</li>
+          </ul>
+          <p style="font-size:12px;color:var(--muted2);margin-top:10px;margin-bottom:0;">Always verify from official sources: <strong style="color:var(--text);">nta.ac.in · jeemain.nta.ac.in · ntaneet.nic.in · eapcet.apsche.ap.gov.in · tsche.ac.in</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- What your result means -->
+    <div style="margin-top:56px;">
+      <div class="section-tag">Interpreting Your Result</div>
+      <h2>WHAT YOUR RESULT<br>ACTUALLY MEANS</h2>
+      <p class="lead" style="max-width:660px;">Many students see a rank number but don't know how to act on it. Here is a clear explanation of every element in your result and what it means for your future.</p>
+      <div class="three-col" style="margin-top:32px;">
+        <div class="card">
+          <h4>The Rank Range</h4>
+          <p style="font-size:13px;">Your predicted rank is shown as a range (e.g., 15,000–22,000) rather than a single number — because a range is honest. It reflects natural year-on-year variation in paper difficulty, candidate count, and normalization. Treat the lower number as your best-case estimate and the higher number as your safe planning base.</p>
+          <div class="tip-box" style="font-size:12px;margin-top:0;">
+            <strong>Planning tip:</strong> When shortlisting colleges, use the higher end of your rank range. If you get a better actual rank, you'll have pleasant surprises. If you plan on the lower rank and get a higher actual rank, you may be unprepared.
+          </div>
+        </div>
+        <div class="card">
+          <h4>The Percentile</h4>
+          <p style="font-size:13px;">Your estimated percentile tells you where you stand relative to all candidates. A percentile of 97.5 means you scored better than 97.5% of students. Percentile is more stable across years than rank because it is normalized for candidate count. A 98.5 percentile in JEE Main 2023 and 2024 corresponds to roughly similar performance levels even if the absolute number of candidates changed.</p>
+          <div class="info-box" style="font-size:12px;margin-top:0;">
+            <strong>Note:</strong> Percentile is not shown for AP EAPCET, TS EAPCET, and AP ECET because these exams use direct merit-based ranking, not percentile-based ranking.
+          </div>
+        </div>
+        <div class="card">
+          <h4>What to Do Next</h4>
+          <p style="font-size:13px;">Once you have your estimated rank, take these steps immediately:</p>
+          <ul class="blist">
+            <li>Check previous year JoSAA opening/closing ranks at josaa.nic.in</li>
+            <li>List 10–15 realistic colleges based on your rank range</li>
+            <li>Register for state counselling portals — seats fill fast</li>
+            <li>Prepare a priority list: branch preference vs. college tier</li>
+            <li>Do not rely on this estimate alone — wait for official results before making decisions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     EXAM TABS
+══════════════════════════════════════════ -->
+<div class="divider"></div>
+<section id="exams" class="sec" aria-labelledby="exam-h">
+  <div class="wrap">
+    <div class="section-tag">Exam Intelligence — Last Updated 2025</div>
+    <h2 id="exam-h">KNOW YOUR<br>EXAM BETTER</h2>
+    <p class="lead" style="max-width:620px;margin-bottom:32px;">Detailed rank vs marks analysis, approximate cutoff ranges, and preparation tips for each exam — based on previous year official data.</p>
+
+    <div class="tab-wrap" role="tablist" aria-label="Exam tabs">
+      <button class="tab-btn active" role="tab" aria-selected="true" onclick="showTab('tj-m',this)">JEE MAIN</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="showTab('tj-a',this)">JEE ADVANCED</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="showTab('tn',this)">NEET UG</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="showTab('tap',this)">AP EAPCET</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="showTab('tts',this)">TS EAPCET</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="showTab('tec',this)">AP ECET</button>
+    </div>
+
+    <!-- JEE MAIN -->
+    <div id="tj-m" class="tab-panel active" role="tabpanel">
+      <div class="three-col" style="margin-bottom:28px;">
+        <div class="stat-card"><div class="stat-num">300</div><div class="stat-lbl">Total Marks (NTA)</div></div>
+        <div class="stat-card"><div class="stat-num">13L+</div><div class="stat-lbl">Candidates Annually (Approx)</div></div>
+        <div class="stat-card"><div class="stat-num">250+</div><div class="stat-lbl">Safe Score for Top NIT CSE</div></div>
+      </div>
+      <div class="tab-two-col">
+        <div>
+          <h4>Rank vs Marks — General Category (Previous Year Trends)</h4>
+          <table class="data-table">
+            <thead><tr><th>Marks Range</th><th>Approx Rank</th><th>Opportunity Level</th></tr></thead>
+            <tbody>
+              <tr><td>290–300</td><td class="rank-val">Top ~500</td><td>IIT via JEE Advanced</td></tr>
+              <tr><td>270–289</td><td class="rank-val">~500–3,000</td><td>Top NIT CSE / ECE</td></tr>
+              <tr><td>250–269</td><td class="rank-val">~3,000–10,000</td><td>Premier NITs — Most Branches</td></tr>
+              <tr><td>220–249</td><td class="rank-val">~10,000–30,000</td><td>Mid NITs, IIITs, GFTIs</td></tr>
+              <tr><td>190–219</td><td class="rank-val">~30,000–65,000</td><td>GFTIs, State Colleges</td></tr>
+              <tr><td>150–189</td><td class="rank-val">~65,000–1,50,000</td><td>State Counselling, Private</td></tr>
+              <tr><td>Below 150</td><td class="rank-val">1,50,000+</td><td>Private / Management Quota</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:10px;font-family:var(--fm);color:var(--muted2);margin-top:8px;">*Previous year approximate data. Actual results vary each year.</p>
+        </div>
+        <div>
+          <h4>NIT CSE Expected Cutoffs — Round 1 (General, Previous Year)</h4>
+          <table class="data-table">
+            <thead><tr><th>College</th><th>Opening Rank</th><th>Closing Rank</th></tr></thead>
+            <tbody>
+              <tr><td>NIT Trichy CSE</td><td class="rank-val">~3,100</td><td class="rank-val">~4,600</td></tr>
+              <tr><td>NIT Warangal CSE</td><td class="rank-val">~3,700</td><td class="rank-val">~5,300</td></tr>
+              <tr><td>NIT Surathkal CSE</td><td class="rank-val">~6,300</td><td class="rank-val">~9,000</td></tr>
+              <tr><td>NIT Calicut CSE</td><td class="rank-val">~7,000</td><td class="rank-val">~9,800</td></tr>
+              <tr><td>IIIT Hyderabad CSE</td><td class="rank-val">~5,000</td><td class="rank-val">~7,800</td></tr>
+              <tr><td>IIIT Allahabad IT</td><td class="rank-val">~7,500</td><td class="rank-val">~10,500</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:10px;font-family:var(--fm);color:var(--muted2);margin-top:8px;">*Based on JoSAA 2024 Round 1. Varies each year.</p>
+          <h4 style="margin-top:22px;">Key Tips to Improve JEE Main Rank</h4>
+          <ul class="blist">
+            <li>Maths has maximum rank impact — a 20-mark jump here shifts rank by ~12,000</li>
+            <li>Attempt Session 2 if Session 1 was below your target</li>
+            <li>~60% of NTA questions follow patterns from previous 10 years' papers</li>
+            <li>Class 11 topics carry ~45% weightage — don't neglect them for Class 12</li>
+            <li>Aim for 80+ correct attempts — accuracy above 82% makes negative marks manageable</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- JEE ADVANCED -->
+    <div id="tj-a" class="tab-panel" role="tabpanel">
+      <div class="three-col" style="margin-bottom:28px;">
+        <div class="stat-card"><div class="stat-num">360</div><div class="stat-lbl">Total Marks</div></div>
+        <div class="stat-card"><div class="stat-num">~1.8L</div><div class="stat-lbl">Eligible Candidates</div></div>
+        <div class="stat-card"><div class="stat-num">175+</div><div class="stat-lbl">Safe Score for Top 5K</div></div>
+      </div>
+      <div class="tab-two-col">
+        <div>
+          <h4>Rank vs Marks — General CRL (Previous Year Trends)</h4>
+          <table class="data-table">
+            <thead><tr><th>Marks</th><th>Approx CRL Rank</th><th>Likely IIT</th></tr></thead>
+            <tbody>
+              <tr><td>220+</td><td class="rank-val">Top ~500</td><td>IIT Bombay / Delhi CSE</td></tr>
+              <tr><td>190–219</td><td class="rank-val">~500–2,000</td><td>Old IITs — Top Branches</td></tr>
+              <tr><td>160–189</td><td class="rank-val">~2,000–6,000</td><td>Old IITs — Most Branches</td></tr>
+              <tr><td>130–159</td><td class="rank-val">~6,000–12,000</td><td>New IITs — Good Branches</td></tr>
+              <tr><td>100–129</td><td class="rank-val">~12,000–18,000</td><td>New IITs — All Branches</td></tr>
+              <tr><td>Below 100</td><td class="rank-val">18,000+</td><td>Below JEE Adv Cutoff Zone</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h4>JEE Advanced: What Makes It Different</h4>
+          <ul class="blist">
+            <li>Tests conceptual depth — one question may require 8–10 minutes of thought</li>
+            <li>Multi-correct type: marking only one when multiple are correct gives zero marks</li>
+            <li>Negative marking is heavier — wrong Multi-correct answers carry −2 marks</li>
+            <li>60% of rank separation comes from NOT marking wrong answers, not from attempting more</li>
+            <li>Both Paper 1 and Paper 2 mandatory — total 6 hours of examination</li>
+          </ul>
+          <h4 style="margin-top:20px;">Recommended Resources</h4>
+          <ul class="blist">
+            <li>Physics: HC Verma Concepts of Physics (Parts 1 & 2)</li>
+            <li>Maths: Cengage series — Calculus, Algebra, Coordinate Geometry</li>
+            <li>Chemistry Organic: VK Jaiswal — mechanism-based approach</li>
+            <li>Solve all 15 years' JEE Advanced papers (2010–2024) under exam conditions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEET -->
+    <div id="tn" class="tab-panel" role="tabpanel">
+      <div class="three-col" style="margin-bottom:28px;">
+        <div class="stat-card"><div class="stat-num">720</div><div class="stat-lbl">Total Marks</div></div>
+        <div class="stat-card"><div class="stat-num">~23L</div><div class="stat-lbl">Candidates Annually</div></div>
+        <div class="stat-card"><div class="stat-num">600+</div><div class="stat-lbl">Safe Score for Govt MBBS</div></div>
+      </div>
+      <div class="tab-two-col">
+        <div>
+          <h4>Rank vs Marks — General Category (Previous Year Trends)</h4>
+          <table class="data-table">
+            <thead><tr><th>Marks</th><th>Approx Rank</th><th>Opportunity</th></tr></thead>
+            <tbody>
+              <tr><td>700–720</td><td class="rank-val">Top ~100</td><td>AIIMS Delhi, JIPMER</td></tr>
+              <tr><td>670–699</td><td class="rank-val">~100–1,000</td><td>AIIMS Campuses, Top Govt Medical</td></tr>
+              <tr><td>640–669</td><td class="rank-val">~1,000–5,000</td><td>Premier Govt Medical Colleges</td></tr>
+              <tr><td>600–639</td><td class="rank-val">~5,000–20,000</td><td>State Govt MBBS Seats</td></tr>
+              <tr><td>550–599</td><td class="rank-val">~20,000–60,000</td><td>State Govt / Private MBBS</td></tr>
+              <tr><td>500–549</td><td class="rank-val">~60,000–1,20,000</td><td>Private MBBS, Deemed Universities</td></tr>
+              <tr><td>Below 500</td><td class="rank-val">1,20,000+</td><td>Management Quota</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h4>Subject Weightage</h4>
+          <ul class="blist">
+            <li>Biology (Botany + Zoology): 360 marks — 50% of total paper</li>
+            <li>Chemistry: 180 marks — 25% of total paper</li>
+            <li>Physics: 180 marks — 25% of total paper</li>
+          </ul>
+          <h4 style="margin-top:20px;">Key Tips</h4>
+          <ul class="blist">
+            <li>NCERT Biology mastery is non-negotiable — every line, diagram, and bold text</li>
+            <li>Score 300+ in Biology alone to compensate for weaker Physics/Chemistry</li>
+            <li>Named reactions and NCERT inorganic chemistry sections repeat every year</li>
+            <li>Physics numericals: 1 question per minute pace — practice NTA-style MCQs daily</li>
+            <li>Last 10 years' actual NEET papers have significant direct repeat questions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- AP EAPCET -->
+    <div id="tap" class="tab-panel" role="tabpanel">
+      <div class="three-col" style="margin-bottom:28px;">
+        <div class="stat-card"><div class="stat-num">160</div><div class="stat-lbl">EAPCET Max Marks</div></div>
+        <div class="stat-card"><div class="stat-num">~3.5L</div><div class="stat-lbl">Engineering Candidates</div></div>
+        <div class="stat-card"><div class="stat-num">100+</div><div class="stat-lbl">Safe EAPCET for Govt CSE</div></div>
+      </div>
+      <div class="tab-two-col">
+        <div>
+          <h4>How AP EAPCET Rank Is Calculated</h4>
+          <div class="info-box" style="margin-top:0;">
+            <strong>AP EAPCET Final Score</strong> = (0.75 × EAPCET Normalized Marks) + (0.25 × Intermediate %)<br>
+            Rank is assigned based on this composite score — not just EAPCET marks alone. Category does not affect rank.
+          </div>
+          <h4 style="margin-top:16px;">Rank vs Final Score (Engineering — Approx Trends)</h4>
+          <table class="data-table">
+            <thead><tr><th>Final Score</th><th>Approx Rank</th><th>Opportunity</th></tr></thead>
+            <tbody>
+              <tr><td>145–160</td><td class="rank-val">Top ~500</td><td>RGUKT, Top JNTUK CSE/ECE</td></tr>
+              <tr><td>125–144</td><td class="rank-val">~500–3,000</td><td>Good Govt Colleges — CSE/ECE</td></tr>
+              <tr><td>105–124</td><td class="rank-val">~3,000–15,000</td><td>Govt Colleges — Core Branches</td></tr>
+              <tr><td>85–104</td><td class="rank-val">~15,000–50,000</td><td>Mid-Tier Private Colleges</td></tr>
+              <tr><td>Below 85</td><td class="rank-val">50,000+</td><td>Private — All Branches Open</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h4>Important Considerations</h4>
+          <ul class="blist">
+            <li>Intermediate % contributes 25% to final rank score — board exams matter significantly</li>
+            <li>A student with 92% vs 80% Inter gains ~3 extra final score points — shifting rank by 5,000–8,000</li>
+            <li>Maths carries 80/160 marks — biggest single rank determinant in EAPCET</li>
+            <li>Use AP Board (Intermediate) textbooks as primary resource — not just NCERT</li>
+            <li>Solve previous 5 years' AP EAPCET papers — question patterns repeat</li>
+          </ul>
+          <h4 style="margin-top:20px;">Counselling Note</h4>
+          <p style="font-size:13px;">Register at eapcet.apsche.ap.gov.in immediately after results. Category-A (75% state quota) seats fill in earlier rounds. Attend all counselling rounds including spot admissions — many good seats open in rounds 3–5.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TS EAPCET -->
+    <div id="tts" class="tab-panel" role="tabpanel">
+      <div class="three-col" style="margin-bottom:28px;">
+        <div class="stat-card"><div class="stat-num">160</div><div class="stat-lbl">Total Marks</div></div>
+        <div class="stat-card"><div class="stat-num">~3L</div><div class="stat-lbl">Engineering Candidates</div></div>
+        <div class="stat-card"><div class="stat-num">95+</div><div class="stat-lbl">Safe Marks for Govt CSE</div></div>
+      </div>
+      <div class="tab-two-col">
+        <div>
+          <h4>How TS EAPCET Rank Is Calculated</h4>
+          <div class="info-box" style="margin-top:0;">
+            <strong>TS EAPCET Rank ∝ Normalized Marks (out of 160)</strong><br>
+            Unlike AP EAPCET, Intermediate percentage is NOT used in TS EAPCET rank calculation. Rank is based purely on normalized exam score. Category does not affect rank.
+          </div>
+          <h4 style="margin-top:16px;">Rank vs Marks (Engineering — Approx Trends)</h4>
+          <table class="data-table">
+            <thead><tr><th>Marks</th><th>Approx Rank</th><th>Opportunity</th></tr></thead>
+            <tbody>
+              <tr><td>135–160</td><td class="rank-val">Top ~1,000</td><td>UCE Osmania, JNTUH Colleges</td></tr>
+              <tr><td>110–134</td><td class="rank-val">~1,000–5,000</td><td>Good Private — CSE, ECE</td></tr>
+              <tr><td>90–109</td><td class="rank-val">~5,000–20,000</td><td>Average Private Colleges</td></tr>
+              <tr><td>70–89</td><td class="rank-val">~20,000–60,000</td><td>Lower-Tier Private</td></tr>
+              <tr><td>Below 70</td><td class="rank-val">60,000+</td><td>Management Quota</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h4>Key Tips for TS EAPCET</h4>
+          <ul class="blist">
+            <li>TS Intermediate (Telangana Board) textbooks are the primary source — 80% questions are board level</li>
+            <li>Maths carries 80/160 marks — the single biggest rank differentiator</li>
+            <li>160 questions in 3 hours = ~67 seconds per question — timed practice is essential</li>
+            <li>Solve TS EAPCET previous 5 years' papers under strict time conditions</li>
+            <li>Check tsche.ac.in for latest syllabus and counselling schedule updates</li>
+          </ul>
+          <h4 style="margin-top:20px;">Good Private Colleges at This Rank</h4>
+          <ul class="blist">
+            <li>Rank 1,000–5,000: CBIT Hyderabad, VNR VJIET, Vasavi College of Engineering</li>
+            <li>Rank 5,000–15,000: CVR College, Anurag Group, BVRIT</li>
+            <li>Rank 15,000–30,000: Many options available across all branches</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- AP ECET -->
+    <div id="tec" class="tab-panel" role="tabpanel">
+      <div class="three-col" style="margin-bottom:28px;">
+        <div class="stat-card"><div class="stat-num">200</div><div class="stat-lbl">Total Marks</div></div>
+        <div class="stat-card"><div class="stat-num">~1.5L</div><div class="stat-lbl">Candidates Annually</div></div>
+        <div class="stat-card"><div class="stat-num">140+</div><div class="stat-lbl">Safe for Govt Lateral Entry</div></div>
+      </div>
+      <div class="tab-two-col">
+        <div>
+          <h4>What Is AP ECET?</h4>
+          <p style="font-size:13px;">AP ECET (Engineering Common Entrance Test) is conducted by APSCHE for Diploma holders and B.Sc. (Mathematics) graduates seeking lateral entry into the 2nd year of B.E./B.Tech programs in Andhra Pradesh. <strong style="color:var(--text);">AP ECET Rank ∝ ECET Marks (out of 200)</strong> — rank is assigned purely based on exam marks with no normalization or intermediate percentage involved.</p>
+          <h4>Rank vs Marks (Approx Trends)</h4>
+          <table class="data-table">
+            <thead><tr><th>Marks</th><th>Approx Rank</th><th>Opportunity</th></tr></thead>
+            <tbody>
+              <tr><td>180–200</td><td class="rank-val">Top ~500</td><td>Top JNTUK/JNTUA — CSE/ECE</td></tr>
+              <tr><td>160–179</td><td class="rank-val">~500–2,000</td><td>Good Private — CSE/ECE/Mech</td></tr>
+              <tr><td>140–159</td><td class="rank-val">~2,000–8,000</td><td>Govt & Aided Lateral Entry</td></tr>
+              <tr><td>120–139</td><td class="rank-val">~8,000–20,000</td><td>Mid-Tier Private Colleges</td></tr>
+              <tr><td>100–119</td><td class="rank-val">~20,000–40,000</td><td>Lower-Tier Private</td></tr>
+              <tr><td>Below 100</td><td class="rank-val">40,000+</td><td>Management Quota</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h4>Paper Structure</h4>
+          <ul class="blist">
+            <li>Mathematics: 50 marks — Diploma-level Maths topics</li>
+            <li>Analytical Ability & Communicative English: 50 marks</li>
+            <li>Core Subject (based on Diploma branch): 100 marks</li>
+          </ul>
+          <h4 style="margin-top:20px;">Key Tips for AP ECET</h4>
+          <ul class="blist">
+            <li>Core subject carries 100/200 marks — focus on your Diploma specialization thoroughly</li>
+            <li>Mathematics (50 marks) is high-scoring — revise Diploma-level Maths completely</li>
+            <li>Analytical Ability and English are consistent easy marks — don't skip them</li>
+            <li>Solve AP ECET previous 5 years' papers — question patterns repeat significantly</li>
+            <li>Register early at sche.ap.gov.in — lateral entry seats in popular branches fill fast</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BLOG
+══════════════════════════════════════════ -->
+<div class="divider"></div>
+<section id="blog" class="sec" style="background:var(--surface);" aria-labelledby="blog-h">
+  <div class="wrap">
+    <div class="section-tag">Articles & Guidance — Updated 2025</div>
+    <h2 id="blog-h">LEARN. PREPARE.<br>SUCCEED.</h2>
+    <p class="lead" style="max-width:620px;">In-depth articles written for students aged 16–22. Practical, data-backed strategies — no filler, no generic advice.</p>
+    <div class="blog-grid">
+      <article class="blog-card" onclick="openArt('a1')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')openArt('a1')" aria-label="Open article: How to improve rank in JEE Main">
+        <div class="blog-cat">JEE Main Strategy</div>
+        <div class="blog-meta">8 min read · Rank Improvement · 2025</div>
+        <h3>HOW TO IMPROVE YOUR RANK IN JEE MAIN — A DATA-BACKED GUIDE</h3>
+        <p>Proven strategies to push your rank from 50,000 into the top 10,000 in the final weeks. Includes subject-wise breakdown and mock test strategy.</p>
+        <div class="blog-read">Read Full Article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </article>
+      <article class="blog-card" onclick="openArt('a2')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')openArt('a2')" aria-label="Open article: Best colleges under rank 10000">
+        <div class="blog-cat">College Selection</div>
+        <div class="blog-meta">10 min read · JoSAA Counselling · 2025</div>
+        <h3>BEST COLLEGES UNDER RANK 10,000 IN JEE MAIN — A COMPLETE GUIDE</h3>
+        <p>A college-by-college breakdown of NITs, IIITs, and GFTIs you can realistically target with a rank below 10,000. Includes actual cutoff data.</p>
+        <div class="blog-read">Read Full Article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </article>
+      <article class="blog-card" onclick="openArt('a3')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')openArt('a3')" aria-label="Open article: Last month NEET strategy">
+        <div class="blog-cat">NEET Preparation</div>
+        <div class="blog-meta">9 min read · Final Month Strategy · 2025</div>
+        <h3>30-DAY NEET STRATEGY — WEEK-BY-WEEK PLAN THAT ACTUALLY WORKS</h3>
+        <p>A day-by-day framework for the final month before NEET. Add 30–60 marks with the right revision and mock test plan.</p>
+        <div class="blog-read">Read Full Article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </article>
+      <article class="blog-card" onclick="openArt('a4')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')openArt('a4')" aria-label="Open article: Common EAPCET mistakes">
+        <div class="blog-cat">EAPCET Guide</div>
+        <div class="blog-meta">7 min read · Common Mistakes · 2025</div>
+        <h3>5 MISTAKES THAT SILENTLY COST RANK IN AP & TS EAPCET</h3>
+        <p>Avoidable errors that drop thousands of ranks every year in EAPCET — and exactly how to fix each one before your exam.</p>
+        <div class="blog-read">Read Full Article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </article>
+      <article class="blog-card" onclick="openArt('a5')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')openArt('a5')" aria-label="Open article: JEE Main to JEE Advanced">
+        <div class="blog-cat">JEE Advanced</div>
+        <div class="blog-meta">8 min read · Strategy Shift · 2025</div>
+        <h3>FROM JEE MAIN TO JEE ADVANCED — HOW TO BRIDGE THE GAP</h3>
+        <p>The exam changes completely. Here is how to adapt your strategy, study materials, and mindset for JEE Advanced.</p>
+        <div class="blog-read">Read Full Article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     LEGAL
+══════════════════════════════════════════ -->
+<div class="divider"></div>
+<section id="legal" class="sec-sm" aria-labelledby="legal-h">
+  <div class="wrap">
+    <div class="section-tag">Legal & Policies</div>
+    <h2 id="legal-h">TRANSPARENCY<br>& TRUST</h2>
+    <div class="legal-grid" style="margin-top:32px;">
+      <div class="card">
+        <h3>PRIVACY POLICY</h3>
+        <h4>What Data We Collect</h4>
+        <p>When you use our rank predictor, we collect only the inputs you enter — exam name, marks, and category — solely to generate your prediction. We do not collect your name, phone number, or email unless you voluntarily submit the contact form.</p>
+        <h4>Cookies & Analytics</h4>
+        <p>We use Google Analytics to understand how students use this website. Analytics cookies help us improve the tool. You can disable cookies in your browser settings at any time without affecting the core functionality of the tool.</p>
+        <h4>Data Security</h4>
+        <p>We do not sell, rent, or share your data with any third party for marketing purposes. All connections are secured via HTTPS. Input data used for rank prediction is processed client-side and is not stored on our servers.</p>
+      </div>
+      <div class="card">
+        <h3>TERMS & CONDITIONS</h3>
+        <h4>Prediction Disclaimer</h4>
+        <p>All rank predictions on RankSense are estimates based on previous year official data and are <strong style="color:var(--danger);">NOT official results</strong>. They must not be used as the sole basis for any legal, academic, or admission-related decision.</p>
+        <h4>No Accuracy Guarantee</h4>
+        <p>RankSense does not guarantee the accuracy of any prediction. Actual ranks are determined by official bodies — NTA, APSCHE, TSCHE — and depend on current year paper difficulty, normalization, and total candidates, all of which change every year.</p>
+        <h4>User Responsibility</h4>
+        <p>By using this tool you agree: (1) Not to rely solely on this tool for any important decision. (2) To always verify information from official sources. (3) This service is for personal educational reference only.</p>
+      </div>
+      <div class="card">
+        <h3>ABOUT US</h3>
+        <p>RankSense was built with one mission: <strong style="color:var(--text);">every student deserves access to clear, honest, and free exam guidance</strong> — especially in the anxious period right after writing a major entrance exam.</p>
+        <p>We are a team of educators and data analysts who went through these very exams. We understand how stressful the wait for results is and how valuable even a rough rank estimate can be when planning your next steps.</p>
+        <p>Our tool covers JEE Main, JEE Advanced, NEET, AP EAPCET, TS EAPCET, and AP ECET — the exams that shape the careers of millions of Indian students every year.</p>
+        <p style="margin-bottom:0;"><strong style="color:var(--text);">RankSense is an independent educational platform</strong> and is not affiliated with NTA, APSCHE, TSCHE, JNTU, or any official examining body.</p>
+      </div>
+      <div class="card">
+        <h3>CONTACT US</h3>
+        <p>Found a data error in our rank tables? Have a suggestion to improve the tool? Want to report incorrect cutoff data? We take all feedback seriously and update our prediction data regularly.</p>
+        <p>Our team responds to all messages within 2–3 working days.</p>
+        <dl class="contact-info">
+          <dt>General Enquiries</dt><dd>support@ranksense.in</dd>
+          <dt>Data Corrections</dt><dd>content@ranksense.in</dd>
+          <dt>Response Time</dt><dd>2–3 Working Days</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CONTACT FORM
+══════════════════════════════════════════ -->
+<div class="divider"></div>
+<section id="contact" class="sec-sm" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div class="section-tag">Get In Touch</div>
+    <div class="contact-grid">
+      <div>
+        <h2 id="contact-h">REACH<br>OUT TO US</h2>
+        <p class="lead">Whether you want to report incorrect rank data, suggest a feature, or just tell us how RankSense helped you — we are listening.</p>
+        <p>For urgent exam-related queries, always check the official exam boards directly: <strong style="color:var(--text);">nta.ac.in</strong>, <strong style="color:var(--text);">eapcet.apsche.ap.gov.in</strong>, <strong style="color:var(--text);">tsche.ac.in</strong>, <strong style="color:var(--text);">sche.ap.gov.in</strong></p>
+        <dl class="contact-info" style="margin-top:20px;">
+          <dt>Email</dt><dd>support@ranksense.in</dd>
+          <dt>Response Time</dt><dd>2–3 Working Days</dd>
+          <dt>Data Issues</dt><dd>content@ranksense.in</dd>
+        </dl>
+      </div>
+      <div class="cf">
+        <input type="text" id="cf-name" placeholder="Your Name" autocomplete="name">
+        <input type="email" id="cf-email" placeholder="Your Email" autocomplete="email">
+        <select id="cf-subject">
+          <option value="">Select Topic</option>
+          <option>General Enquiry</option>
+          <option>Data Correction Request</option>
+          <option>Feature Suggestion</option>
+          <option>Partnership / Collaboration</option>
+        </select>
+        <textarea id="cf-msg" placeholder="Your Message (please be specific — e.g., 'Rank data for TS EAPCET 2024 seems incorrect for scores above 140')"></textarea>
+        <button class="btn-send" onclick="submitCF()">SEND MESSAGE +</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-logo">RANK<span>SENSE</span></div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#exams">Exams</a>
+      <a href="#blog">Articles</a>
+      <a href="#legal">Privacy Policy</a>
+      <a href="#legal">Terms</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disc">⚠ <strong>Disclaimer:</strong> All rank predictions on RankSense are based on previous year trends and official data and are NOT official results. Predictions should not be used as the sole basis for any academic or admission decision. RankSense is an independent educational platform and is not affiliated with NTA, APSCHE, TSCHE, or any official examining body. Always verify from official sources.</p>
+    <p class="footer-copy">© 2025 RankSense · Educational Use Only · Last Updated: 2025</p>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     ARTICLE MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-wrap">
+    <div class="modal-box">
+      <div class="modal-head">
+        <span class="modal-head-cat" id="modal-cat">Article</span>
+        <button class="modal-close" onclick="closeModal()" aria-label="Close article">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ── NAV ── */
+function toggleMenu(){
+  const m=document.getElementById('nav-mobile'),h=document.getElementById('hamburger');
+  const o=m.classList.toggle('open');h.setAttribute('aria-expanded',String(o));
+}
+function closeMenu(){
+  document.getElementById('nav-mobile').classList.remove('open');
+  document.getElementById('hamburger').setAttribute('aria-expanded','false');
+}
+document.addEventListener('click',e=>{
+  if(!document.querySelector('nav').contains(e.target))closeMenu();
+});
+
+/* ── TOAST ── */
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.style.display='block';
+  clearTimeout(window._t);window._t=setTimeout(()=>t.style.display='none',3500);
+}
+
+/* ── EXAM CONFIG ── */
+const STATE_EXAMS=['ap-eapcet','ts-eapcet','ecet'];
+const NO_PCT=['ap-eapcet','ts-eapcet','ecet'];
+const ECFG={
+  'jee-main'    :{max:300,ph:'e.g. 240 / 300'},
+  'jee-advanced':{max:360,ph:'e.g. 170 / 360'},
+  'neet'        :{max:720,ph:'e.g. 620 / 720'},
+  'ts-eapcet'   :{max:160,ph:'e.g. 110 / 160'},
+  'ecet'        :{max:200,ph:'e.g. 150 / 200'},
+};
+const ENAMES={
+  'jee-main':'JEE Main','jee-advanced':'JEE Advanced','neet':'NEET UG',
+  'ap-eapcet':'AP EAPCET','ts-eapcet':'TS EAPCET','ecet':'AP ECET'
+};
+
+function onExamChange(){
+  const ex=document.getElementById('exam-sel').value;
+  const apF=document.getElementById('ap-fields');
+  const defR=document.getElementById('default-row');
+  const mi=document.getElementById('marks-inp');
+  const lbl=document.getElementById('marks-lbl');
+  if(ex==='ap-eapcet'){
+    apF.classList.add('show');defR.style.display='none';
+  } else {
+    apF.classList.remove('show');defR.style.display='';
+    const c=ECFG[ex];
+    if(c){mi.max=c.max;mi.placeholder=c.ph;lbl.textContent='Your Score / Marks';}
+  }
+  document.getElementById('result-box').style.display='none';
+}
+
+/* ── RANK DATA ── */
+const RD={
+  'jee-main':[
+    {min:290,max:300,lo:1,hi:500,pct:'99.96+',zone:'Exceptional',
+     meaning:'An outstanding score. You are in the top 500 ranks nationally and are likely to qualify for JEE Advanced comfortably. Your options include the very best NITs for CSE and ECE.',
+     col:['IIT via JEE Advanced','NIT Trichy CSE','NIT Warangal CSE','IIIT Hyderabad CSE'],
+     steps:['Register on josaa.nic.in immediately after results','Prepare seriously for JEE Advanced','Target IIT Bombay/Delhi CSE if Advanced rank is in top 1,000']},
+    {min:270,max:289,lo:500,hi:3000,pct:'99.7–99.96',zone:'Excellent',
+     meaning:'An excellent score placing you in the top 3,000 nationally. You have strong options at top-tier NITs (Trichy, Warangal) for CSE and ECE, and IIIT Hyderabad for CSE.',
+     col:['NIT Trichy CSE/ECE','NIT Warangal CSE/ECE','NIT Surathkal CSE','IIIT Hyderabad ECE'],
+     steps:['Shortlist NITs by branch preference using JoSAA data','Also prepare for JEE Advanced if interested in IITs','Fill all 25 JoSAA choices — don\'t leave slots empty']},
+    {min:250,max:269,lo:3000,hi:10000,pct:'99.2–99.7',zone:'Very Good',
+     meaning:'A strong performance in the top 10,000 nationally. Premier NITs like Surathkal, Calicut, Rourkela, and NIT Warangal ECE/Mech are accessible. Good IIIT options also available.',
+     col:['NIT Surathkal — Most Branches','NIT Calicut CSE/ECE','NIT Rourkela CSE','IIIT Allahabad IT'],
+     steps:['Use JoSAA previous year rank data to shortlist 15–20 colleges','Also register for state counselling (AP/TS) for additional options','Prioritise branch over college if software career is your goal']},
+    {min:220,max:249,lo:10000,hi:30000,pct:'97.7–99.2',zone:'Good',
+     meaning:'A competitive rank in the top 30,000. Mid-tier NITs for most branches, top IIITs, and good GFTIs are accessible. State-level top colleges also open up through state counselling.',
+     col:['NIT Silchar CSE','NIT Durgapur ECE','IIIT Gwalior IT','GFTIs like IIEST Shibpur'],
+     steps:['Register for JoSAA counselling and also for state counselling portals simultaneously','Prepare a college priority list: Tier 1 NIT non-CSE vs Tier 2 NIT CSE','Check CSAB rounds for additional seats after JoSAA']},
+    {min:190,max:219,lo:30000,hi:65000,pct:'95–97.7',zone:'Moderate',
+     meaning:'A decent rank with good state-level college options. Lower-tier NITs, GFTIs, and strong state government colleges are accessible. This rank is solid for state counselling.',
+     col:['NIT Manipur/Sikkim — Core Branches','GFTIs','Top State Govt Colleges'],
+     steps:['Prioritise state counselling registrations','Consider NIT Agartala, NIT Srinagar for core engineering branches','Explore BITSAT and other private entrance exams as backup']},
+    {min:150,max:189,lo:65000,hi:150000,pct:'88–95',zone:'Average',
+     meaning:'This rank focuses your options on state-level colleges and private engineering institutions. State counselling is your primary pathway. Consider retaking JEE Main next year if IIT/NIT is the goal.',
+     col:['State Govt Engineering Colleges','Top Private Colleges via State Quota'],
+     steps:['Register for state counselling immediately after results','Consider a drop year and target 200+ marks for NIT-level rank','Explore other career options — many state colleges have excellent placements']},
+    {min:0,max:149,lo:150000,hi:600000,pct:'Below 88',zone:'Needs Improvement',
+     meaning:'This rank range points primarily to private engineering colleges through management quota or state counselling. This is also a signal to seriously reconsider preparation strategy if NIT/IIIT is your goal.',
+     col:['Private Engineering Colleges','Management Quota Seats'],
+     steps:['Strongly consider retaking JEE Main with a focused preparation plan','Focus on increasing Maths score significantly — it has maximum rank impact','Consider alternative engineering entrance exams: KCET, MHT-CET, VITEEE']}
+  ],
+  'jee-advanced':[
+    {min:220,max:360,lo:1,hi:500,pct:'Top 0.3%',zone:'Exceptional',
+     meaning:'An extraordinary achievement. You are among the top 500 rankers nationally in JEE Advanced. IIT Bombay, IIT Delhi, and IIT Madras CSE are realistic targets.',
+     col:['IIT Bombay CSE','IIT Delhi CSE','IIT Madras CSE','IIT Kanpur CSE'],
+     steps:['Register at josaa.nic.in for IIT counselling','Fill all choices — include your preferred IIT CSE as priority 1','These seats are extremely competitive — verify branch cutoffs carefully']},
+    {min:190,max:219,lo:500,hi:2000,pct:'Top 1.1%',zone:'Excellent',
+     meaning:'An excellent rank in JEE Advanced. All old IITs (Bombay, Delhi, Madras, Kanpur, Kharagpur, Roorkee) for top branches are accessible. This is a career-defining achievement.',
+     col:['IIT Bombay/Delhi — Non-CSE','IIT Madras CSE','IIT Kanpur CSE','IIT Roorkee CSE'],
+     steps:['Research branch-specific cutoffs for each old IIT carefully','CSE at IIT Madras/Kanpur closes around rank 800–1,500','Electrical Engineering at IIT Bombay also closes ~1,200–1,800']},
+    {min:160,max:189,lo:2000,hi:6000,pct:'Top 3.3%',zone:'Very Good',
+     meaning:'A strong result giving you access to old IITs for most branches and new IITs for top branches like CSE and ECE.',
+     col:['IIT Kharagpur — Most Branches','IIT Guwahati CSE/ECE','New IITs — CSE'],
+     steps:['Explore IIT Kharagpur and IIT Guwahati — strong placement records','New IITs like IIT Jodhpur and IIT Indore CSE also accessible','Research campus culture and research facilities before finalising']},
+    {min:130,max:159,lo:6000,hi:12000,pct:'Top 6.7%',zone:'Good',
+     meaning:'A good JEE Advanced rank with access to newer IITs for most branches. This is a significant achievement considering ~1.8 lakh eligible candidates.',
+     col:['IIT Jodhpur','IIT Bhubaneswar CSE/ECE','IIT Tirupati','IIT Dharwad'],
+     steps:['New IITs have growing research and placement ecosystems','Compare branch vs campus carefully — CSE at any IIT is valuable','Also register for JoSAA NIT/IIIT counselling as backup']},
+    {min:100,max:129,lo:12000,hi:18000,pct:'Top 10%',zone:'Moderate',
+     meaning:'Within the qualifying mark zone for most categories. Access to newer IITs for less competitive branches. A commendable result given the competition.',
+     col:['New IITs — All Branches','NIT Trichy/Warangal via JEE Main rank'],
+     steps:['Compare newer IIT branches with NIT CSE — sometimes NIT CSE is a better career bet','Check JEE Main rank for NIT/IIIT options simultaneously','Consider 5-year integrated programs at IITs']},
+    {min:0,max:99,lo:18000,hi:50000,pct:'Below 10%',zone:'Needs Improvement',
+     meaning:'Below the expected cutoff zone for most IIT branches in the general category. However, your JEE Main rank still qualifies you for NITs and IIITs.',
+     col:['NITs via JEE Main Rank','IIITs via JEE Main Rank'],
+     steps:['Use your JEE Main rank for NIT/IIIT counselling via JoSAA','Consider retaking JEE Advanced next year with focused Advanced-specific preparation','JEE Advanced requires a fundamentally different study approach than JEE Main']}
+  ],
+  'neet':[
+    {min:700,max:720,lo:1,hi:100,pct:'99.99+',zone:'Exceptional',
+     meaning:'An extraordinary NEET score placing you in the top 100 nationally. AIIMS Delhi is a realistic target. Your options include the very best medical institutions in the country.',
+     col:['AIIMS Delhi','AIIMS Jodhpur','JIPMER Puducherry','AIIMS Bhopal'],
+     steps:['Register on mcc.nic.in for AIQ counselling immediately after results','AIIMS Delhi CSE closes around rank 25–50 — highly competitive','Prepare a list of all AIIMS campuses in priority order']},
+    {min:670,max:699,lo:100,hi:1000,pct:'99.9+',zone:'Excellent',
+     meaning:'An excellent score in the top 1,000. All AIIMS campuses and the best government medical colleges in India are accessible.',
+     col:['AIIMS Campuses (Bhopal, Patna, Jodhpur)','JIPMER Puducherry','Top State Govt Medical Colleges'],
+     steps:['Register for both AIQ and state quota counselling','AIIMS campuses have different cutoffs — research each one','Apply for JIPMER which has a separate merit list']},
+    {min:640,max:669,lo:1000,hi:5000,pct:'99.5+',zone:'Very Good',
+     meaning:'A strong result in the top 5,000. Premier government medical colleges and state top medical colleges are accessible. This is a genuinely excellent NEET result.',
+     col:['Grant Medical College Mumbai','MAMC Delhi','Maulana Azad Medical College','State Top Govt Medical Colleges'],
+     steps:['Register for MCC AIQ counselling and state counselling simultaneously','Research state-specific govt medical college cutoffs','MBBS at a top state govt college is an excellent outcome at this rank']},
+    {min:600,max:639,lo:5000,hi:20000,pct:'99+',zone:'Good',
+     meaning:'A competitive rank in the top 20,000 nationally. State government MBBS seats through state quota counselling are accessible. This is a solid outcome for most state-level MBBS aspirations.',
+     col:['State Govt Medical Colleges (MBBS)','Central University Medical Colleges'],
+     steps:['Focus primarily on state quota counselling — 85% of govt seats go to state quota','Check your state-specific NEET cutoffs carefully','Register at the state medical counselling portal immediately after AIQ results']},
+    {min:550,max:599,lo:20000,hi:60000,pct:'97–99',zone:'Moderate',
+     meaning:'A moderate rank that accesses some government seats through state quota and private medical college MBBS seats. Deemed university options also available.',
+     col:['State Govt MBBS (State Quota)','Private Medical College MBBS','Deemed University MBBS'],
+     steps:['Explore state quota counselling thoroughly — late rounds often have government seats','Research private medical college fees carefully before committing','BAMS, BDS, BHMS are alternative medical career paths worth exploring']},
+    {min:0,max:549,lo:60000,hi:600000,pct:'Below 97',zone:'Needs Improvement',
+     meaning:'This rank range primarily accesses private medical college seats and management quota. Government MBBS is very difficult at this rank. Consider whether to drop a year for better preparation.',
+     col:['Private Medical Colleges','Management Quota Seats','Alternative Medical Programs'],
+     steps:['Strongly consider a structured drop year with a coaching institute if MBBS is the goal','Explore BDS (Dentistry) — good career with lower NEET cutoff','BAMS, BUMS, BHMS are respected careers in alternative medicine','Nursing and Pharmacy are excellent healthcare alternatives']}
+  ],
+  'ap-eapcet':[
+    {min:145,max:165,lo:1,hi:500,zone:'Excellent',
+     meaning:'An outstanding AP EAPCET composite score. You are in the top 500 ranks statewide and have access to the best government engineering institutions in Andhra Pradesh including RGUKT campuses.',
+     col:['RGUKT Nuzvid / RK Valley','JNTU Kakinada CSE/ECE','Top JNTUA Colleges — CSE'],
+     steps:['Register on eapcet.apsche.ap.gov.in for counselling','RGUKT has free education with accommodation — a strong option','Verify your final composite score and rank on official APSCHE portal']},
+    {min:125,max:144.9,lo:500,hi:3000,zone:'Very Good',
+     meaning:'A strong score in the top 3,000 statewide. Good government colleges and top-tier aided colleges are accessible for CSE and ECE branches.',
+     col:['Govt Engineering Colleges (CSE/ECE)','RGUKT Srikakulam','Top Aided Colleges AP'],
+     steps:['Prioritise government college seats — they have much lower fees','Research JNTUK and JNTUA affiliated top college rankings','Attend all counselling rounds — good seats open in rounds 3–5']},
+    {min:105,max:124.9,lo:3000,hi:15000,zone:'Good',
+     meaning:'A good rank with access to government engineering colleges for most branches. Private college options are also strong at this rank range in AP.',
+     col:['Govt Engineering Colleges — Most Branches','Good Private Colleges — CSE/ECE'],
+     steps:['Use EAPCET web option entry carefully — list choices from best to backup','Consider branch preference: CSE at a private college vs Civil at a Govt college?','Register for JEE Main state quota also if eligible']},
+    {min:85,max:104.9,lo:15000,hi:50000,zone:'Moderate',
+     meaning:'A moderate rank where private college options are wide open. Most engineering branches at mid-tier private colleges are accessible throughout AP.',
+     col:['Mid-Tier Private Engineering Colleges','Most Branches Available'],
+     steps:['Focus on private colleges with good NAAC ratings and placement records','Research placement data for specific colleges before finalising','Mechanical and Civil branches at reputed private colleges remain valuable']},
+    {min:0,max:84.9,lo:50000,hi:250000,zone:'Average',
+     meaning:'Most AP private college seats are accessible. Consider whether engineering is the right path, or if additional preparation for EAPCET next year makes sense.',
+     col:['Private Engineering Colleges AP — All Branches'],
+     steps:['Research private college fees and placement rates carefully','Consider taking polytechnic route if finances are a constraint','Lateral entry through ECET after Diploma is a good alternative pathway']}
+  ],
+  'ts-eapcet':[
+    {min:130,max:160,lo:1,hi:1000,zone:'Excellent',
+     meaning:'An excellent TS EAPCET score placing you in the top 1,000 statewide. UCE Osmania University and top JNTUH campus colleges are accessible for CSE and ECE.',
+     col:['UCE Osmania University','JNTUH Campus Colleges','CBIT Hyderabad CSE'],
+     steps:['Register on tsche.ac.in for counselling immediately','UCE Osmania is the most prestigious government engineering college in TS','Research branch-specific cutoffs for JNTUH-affiliated top colleges']},
+    {min:110,max:129,lo:1000,hi:5000,zone:'Very Good',
+     meaning:'A strong score giving you access to top private colleges in Hyderabad and JNTUH campus programs. CSE and ECE branches at reputed private colleges are comfortably accessible.',
+     col:['CBIT Hyderabad','VNR VJIET','Vasavi College of Engineering','CVR College of Engineering'],
+     steps:['These Hyderabad private colleges have strong placement records','Attend all counselling rounds — don\'t freeze early without your preferred college','Research NAAC ratings and LPA data for shortlisted colleges']},
+    {min:90,max:109,lo:5000,hi:20000,zone:'Good',
+     meaning:'A decent rank with good access to average private engineering colleges throughout Telangana. Most branches are accessible.',
+     col:['Average Private Colleges TS — CSE/ECE/Mech','Most Branches Available'],
+     steps:['Research placement rates for specific colleges in your preferred area','Mechanical, Civil, and Electrical have strong government/PSU job prospects','Consider dual degree programs if available at preferred colleges']},
+    {min:70,max:89,lo:20000,hi:60000,zone:'Moderate',
+     meaning:'A moderate TS EAPCET rank with wide access to private college seats throughout Telangana.',
+     col:['Lower-Tier Private Colleges TS'],
+     steps:['Research college NAAC ratings before committing to management quota seats','Consider taking EAPCET again next year if top college is a priority','Diploma → ECET is an alternative route worth considering']},
+    {min:0,max:69,lo:60000,hi:250000,zone:'Needs Improvement',
+     meaning:'Management quota or private college seats are the primary options at this rank. A structured reassessment of preparation strategy is advisable.',
+     col:['Private Engineering Colleges — Management Quota'],
+     steps:['Consider retaking TS EAPCET with focused Maths preparation — it carries 50% marks','Explore Diploma Engineering as an alternative — lateral entry to B.Tech via ECET','Research fees and placement data very carefully before committing']}
+  ],
+  'ecet':[
+    {min:180,max:200,lo:1,hi:500,zone:'Excellent',
+     meaning:'An excellent AP ECET score in the top 500 ranks. Top JNTUK and JNTUA affiliated colleges for CSE and ECE lateral entry are accessible.',
+     col:['AUCE Visakhapatnam','Top JNTUK Colleges — CSE/ECE','Top JNTUA Colleges'],
+     steps:['Register at sche.ap.gov.in for ECET counselling early','Top lateral entry seats in popular branches fill in early rounds','Verify your branch eligibility carefully — ECET has branch-specific lateral entry']},
+    {min:160,max:179,lo:500,hi:2000,zone:'Very Good',
+     meaning:'A strong ECET result with good access to reputed private engineering colleges for lateral entry into 2nd year B.Tech.',
+     col:['Good Private Colleges — CSE/ECE/Mech Lateral Entry'],
+     steps:['Shortlist colleges by NAAC rating and placement records','Lateral entry students often outperform regular students — use your Diploma experience','Research which colleges have the best integration programs for lateral entry students']},
+    {min:140,max:159,lo:2000,hi:8000,zone:'Good',
+     meaning:'A good ECET rank with access to government-aided and good private college lateral entry seats in most engineering branches.',
+     col:['Govt & Aided Engineering Colleges — Lateral Entry','Mid-Tier Private Colleges'],
+     steps:['Government-aided colleges offer the best value for ECET lateral entry','Research the difference in curriculum between your Diploma and B.Tech program','Attend all ECET counselling rounds including spot admissions']},
+    {min:120,max:139,lo:8000,hi:20000,zone:'Moderate',
+     meaning:'Mid-tier private college lateral entry options are available throughout AP for most engineering branches.',
+     col:['Mid-Tier Private Colleges — Most Branches'],
+     steps:['Research college fees and placement data before finalising','Electrical and Mechanical lateral entry seats are often easier to fill — good placement too','Consider distance/part-time B.Tech if finances are a concern']},
+    {min:100,max:119,lo:20000,hi:40000,zone:'Average',
+     meaning:'Lower-tier private college options are available. Consider whether this is the right time for lateral entry or if additional ECET preparation is advisable.',
+     col:['Lower-Tier Private Colleges — Lateral Entry'],
+     steps:['Carefully evaluate ROI of private college fees against likely career outcomes','Research which branches at lower-tier colleges have decent placement records','Mathematics-heavy branches (CSE, ECE) require strong Diploma fundamentals — assess honestly']},
+    {min:0,max:99,lo:40000,hi:100000,zone:'Needs Improvement',
+     meaning:'Limited options at this rank range. Reassessment of goals and preparation strategy is advisable.',
+     col:['Private Colleges — Management Quota / Less Popular Branches'],
+     steps:['Consider retaking ECET with focused preparation on Mathematics and core subject','Explore PGECET for postgraduate engineering options after B.Tech completion','Working in industry while completing B.Tech via part-time is a viable route']}
+  ]
+};
+
+/* ── PREDICT ── */
+function doPredict(){
+  const ex=document.getElementById('exam-sel').value;
+  const cat=document.getElementById('cat-sel').value;
+  if(!ex){toast('Please select an exam first.');return;}
+
+  let sc,disp;
+  if(ex==='ap-eapcet'){
+    const nm=parseFloat(document.getElementById('ap-norm').value);
+    const ip=parseFloat(document.getElementById('ap-inter').value);
+    if(isNaN(nm)||nm<0||nm>160){toast('Enter valid EAPCET Normalized Marks (0–160).');return;}
+    if(isNaN(ip)||ip<0||ip>100){toast('Enter a valid Intermediate Percentage (0–100).');return;}
+    sc=(0.75*nm)+(0.25*ip);
+    disp=nm+' EAPCET + '+ip+'% Inter = '+sc.toFixed(2);
+  } else {
+    const m=parseFloat(document.getElementById('marks-inp').value);
+    if(isNaN(m)||m<0){toast('Please enter valid marks.');return;}
+    sc=m;disp=m;
+  }
+
+  const data=RD[ex];
+  let row=data[data.length-1];
+  for(let i=0;i<data.length;i++){if(sc>=data[i].min&&sc<=data[i].max){row=data[i];break;}}
+
+  let lo=row.lo,hi=row.hi;
+  const isSt=STATE_EXAMS.includes(ex);
+  if(!isSt){
+    const bon={general:0,ews:0,obc:-5000,sc:-20000,st:-30000}[cat]||0;
+    lo=Math.max(1,lo+bon);hi=Math.max(lo+500,hi+bon);
+  }
+
+  /* Fill result */
+  document.getElementById('res-rank').textContent=lo.toLocaleString('en-IN')+' – '+hi.toLocaleString('en-IN');
+  document.getElementById('res-score').textContent=disp;
+  document.getElementById('res-cat').textContent=isSt?'N/A for Rank':cat.toUpperCase();
+  document.getElementById('res-zone').textContent=row.zone||'—';
+  document.getElementById('res-meaning').textContent=row.meaning||'';
+
+  const pillPct=document.getElementById('pill-pct');
+  const pctNum=document.getElementById('res-pct-num');
+  const pctLbl=document.getElementById('res-pct-lbl');
+  if(NO_PCT.includes(ex)){
+    pillPct.style.display='none';pctNum.textContent='';pctLbl.textContent='';
+  } else {
+    pillPct.style.display='';
+    document.getElementById('res-percentile').textContent=row.pct||'—';
+    pctNum.textContent=row.pct||'';pctLbl.textContent='Est. Percentile';
+  }
+
+  /* Colleges */
+  const cEl=document.getElementById('res-colleges');
+  cEl.innerHTML='';
+  (row.col||[]).forEach(c=>{
+    const s=document.createElement('span');s.className='c-tag';s.textContent=c;cEl.appendChild(s);
+  });
+
+  /* Steps */
+  const sEl=document.getElementById('res-steps');
+  sEl.innerHTML='';
+  (row.steps||[]).forEach(s=>{
+    const li=document.createElement('li');li.textContent=s;sEl.appendChild(li);
+  });
+
+  const box=document.getElementById('result-box');
+  box.style.display='block';
+  setTimeout(()=>box.scrollIntoView({behavior:'smooth',block:'nearest'}),80);
+}
+
+/* ── TABS ── */
+function showTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false');});
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');btn.setAttribute('aria-selected','true');
+}
+
+/* ── CONTACT ── */
+function submitCF(){
+  const n=document.getElementById('cf-name').value.trim();
+  const e=document.getElementById('cf-email').value.trim();
+  const m=document.getElementById('cf-msg').value.trim();
+  if(!n||!e||!m){toast('Please fill in Name, Email, and Message.');return;}
+  toast('✓ Thank you! We will respond within 2–3 working days.');
+  ['cf-name','cf-email','cf-msg'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('cf-subject').selectedIndex=0;
+}
+
+/* ══════════════════════════════════════
+   FULL ARTICLES (600–900 words each)
+══════════════════════════════════════ */
+const ARTS={
+  a1:{
+    cat:'JEE Main Strategy · Updated 2025',
+    body:`
+<h1 id="modal-title">How to Improve Your Rank in JEE Main — A Data-Backed Guide</h1>
+<div class="art-meta">8 min read · Rank Improvement · Last updated: 2025</div>
+
+<p>If you have been consistently scoring 150–200 in JEE Main mock tests and want to push into the top 30,000, this article is written for you. Improving your JEE Main rank is not about studying more hours — it is about identifying the exact sources of mark loss and correcting them with surgical precision. Here is how to do that.</p>
+
+<div class="tip-box"><strong>Data context:</strong> In JEE Main 2024, the difference between Rank 10,000 and Rank 30,000 was approximately 25–30 marks. That is just 8–10 questions. Small changes produce large rank movements.</div>
+
+<h2>Step 1 — Analyse Your Actual Mark Loss Pattern</h2>
+<p>Before changing anything in your study plan, take your last 5 full-length mock papers and categorise every lost mark into three buckets:</p>
+<ul>
+  <li><strong>Careless errors</strong> — questions you knew, but got wrong due to calculation mistakes, misreading, or silly errors</li>
+  <li><strong>Knowledge gaps</strong> — questions you genuinely could not solve</li>
+  <li><strong>Time pressure</strong> — questions you skipped because you ran out of time</li>
+</ul>
+<p>Most students discover that 40–50% of their lost marks are in the "careless error" bucket. Fixing careless errors alone adds 20–30 marks to your score — which at JEE Main scale moves your rank by 25,000–40,000 positions.</p>
+
+<h2>Subject-Wise Priority Strategy</h2>
+
+<h3>Mathematics — Highest Rank Impact</h3>
+<p>A 20-mark improvement in Mathematics shifts your JEE Main rank by approximately 12,000–15,000 positions. Focus on these three areas which together cover ~65% of the Maths paper:</p>
+<ul>
+  <li>Calculus (Limits, Derivatives, Integration, Differential Equations) — ~35 marks</li>
+  <li>Coordinate Geometry (Circles, Parabola, Ellipse, Straight Lines) — ~25 marks</li>
+  <li>Algebra (Matrices, Complex Numbers, Permutation, Binomial) — ~22 marks</li>
+</ul>
+<p>Class 11 chapters carry ~45% of the Maths weightage. Many students over-prepare Class 12 at the expense of Class 11 — a costly mistake.</p>
+
+<h3>Physics — Second Highest Impact</h3>
+<ul>
+  <li>Mechanics and Waves: ~35 marks — Newton's Laws, Circular Motion, SHM, Sound</li>
+  <li>Electricity and Magnetism: ~30 marks — Circuits, EMF, Magnetic Effects, EMI</li>
+  <li>Modern Physics: ~20 marks — Photoelectric Effect, Nuclei, Semiconductors</li>
+</ul>
+
+<h3>Chemistry — Most Formulaic, Easiest to Improve Fast</h3>
+<ul>
+  <li>Physical Chemistry: Mole concept, Chemical Equilibrium, Electrochemistry — direct formula application</li>
+  <li>Organic Chemistry: Named reactions, Mechanisms, Functional groups — pattern based</li>
+  <li>Inorganic Chemistry: NCERT is completely sufficient — do not over-study this section</li>
+</ul>
+
+<h2>The Mock Test Strategy That Actually Works</h2>
+<p>Take a full-length mock every alternate day in the final three weeks. But the test itself is only 30% of the value — the 60–90 minute analysis after each test is the other 70%. For every wrong answer, ask: did I not know this, or did I make an error I should not have made? Only genuine knowledge gaps go into your revision list. Careless errors go into a separate "common mistakes" list that you review before every subsequent mock.</p>
+
+<h2>7 Mistakes That Silently Drop Your Rank</h2>
+<ul>
+  <li>Studying new topics in the last 10 days — this actively hurts rather than helps</li>
+  <li>Ignoring "easy" topics like Sets, Statistics, Chemical Bonding — free marks being left on the table</li>
+  <li>Spending more than 3 minutes on a single question instead of moving on</li>
+  <li>Not using all 3 hours — many students finish 30 minutes early unnecessarily</li>
+  <li>Skipping questions entirely when elimination could get you to the right answer</li>
+  <li>Not attempting Session 2 if Session 1 was below target — NTA takes the best of two sessions</li>
+  <li>Ignoring negative marks — attempt only when confidence is above ~75%</li>
+</ul>
+
+<h2>What Good Looks Like: Marks vs Rank</h2>
+<ul>
+  <li>300 marks → Top ~500 rank nationally</li>
+  <li>270 marks → ~500–3,000 rank (Top NIT CSE zone)</li>
+  <li>240 marks → ~5,000–15,000 rank (Good NIT zone)</li>
+  <li>210 marks → ~18,000–35,000 rank (Mid NIT, IIIT zone)</li>
+  <li>180 marks → ~50,000–90,000 rank (State college zone)</li>
+</ul>
+
+<div class="tip-box"><strong>Final principle:</strong> Consistency beats intensity in JEE Main. A student who takes 15 carefully analysed mocks and fixes 3 recurring mistake categories will consistently outperform a student who reads textbooks for 18 hours a day without mock practice. Trust the process.</div>
+`},
+  a2:{
+    cat:'College Selection · Updated 2025',
+    body:`
+<h1 id="modal-title">Best Colleges Under Rank 10,000 in JEE Main — A Complete Guide</h1>
+<div class="art-meta">10 min read · JoSAA Counselling · Last updated: 2025</div>
+
+<p>A rank under 10,000 in JEE Main is a significant achievement that opens the doors to some of the finest engineering institutions in India. But knowing which college to choose — and how to navigate JoSAA counselling efficiently — can be just as important as the rank itself. This article gives you a clear, college-by-college breakdown with realistic data.</p>
+
+<div class="tip-box"><strong>Key principle:</strong> At rank under 10,000, you have excellent options across multiple institutions and branches. The goal is to choose based on career objectives — not just college brand name.</div>
+
+<h2>Top NITs Accessible Under Rank 10,000 — General Category</h2>
+
+<h3>Tier 1 NITs (Highly Competitive at This Rank)</h3>
+<ul>
+  <li><strong>NIT Trichy</strong> — CSE closes ~4,500 | ECE ~8,000 | Mechanical ~9,800 | Chemical ~9,000</li>
+  <li><strong>NIT Warangal</strong> — CSE closes ~5,200 | ECE ~9,000 | Mechanical ~10,500</li>
+  <li><strong>NIT Surathkal</strong> — CSE closes ~8,800 | ECE ~9,500 | IT ~9,800 | All accessible under 10,000</li>
+  <li><strong>NIT Calicut</strong> — CSE closes ~9,500 | ECE ~10,200 | Mechanical ~9,800</li>
+  <li><strong>NIT Rourkela</strong> — CSE closes ~9,000 | ECE, Electrical, Civil well within range</li>
+</ul>
+
+<h3>Tier 2 NITs — Comfortably Accessible Under 10,000</h3>
+<ul>
+  <li>NIT Durgapur, NIT Silchar, NIT Hamirpur, NIT Kurukshetra — CSE all accessible</li>
+  <li>NIT Jaipur, NIT Patna — Most branches accessible under 10,000</li>
+</ul>
+
+<h2>Top IIITs Accessible Under Rank 10,000</h2>
+<ul>
+  <li><strong>IIIT Hyderabad</strong> — CSE ~6,000–7,500 | ECE ~8,000–9,500 | Excellent placement and research</li>
+  <li><strong>IIIT Allahabad</strong> — IT ~7,000 | ECE ~8,500 | Strong alumni network</li>
+  <li><strong>IIIT Delhi</strong> — CSE, ECE, CB — all accessible comfortably under 10,000</li>
+  <li><strong>ABV-IIITM Gwalior</strong> — IT Program ~7,000–9,000 | Good tech placements</li>
+  <li><strong>IIIT Vadodara, IIIT Kottayam</strong> — CSE accessible well under 10,000</li>
+</ul>
+
+<h2>The Branch vs College Dilemma — How to Decide</h2>
+<p>The most common dilemma at rank under 10,000: top NIT with a non-CSE branch, or a lower NIT with CSE? The answer depends entirely on your career goals:</p>
+<ul>
+  <li><strong>Software / IT career goal:</strong> CSE at any reputed NIT or IIIT > ECE or Mechanical at Tier 1 NIT. Most software companies recruit from all NITs regardless of tier for CSE.</li>
+  <li><strong>Core engineering (GATE, PSU, R&D):</strong> Tier 1 NIT ECE/Mechanical > CSE at unknown college. Brand and research lab quality matter more here.</li>
+  <li><strong>MBA / UPSC / civil services:</strong> Institution brand matters more than branch. NIT Trichy Mechanical is a better UPSC signal than NIT Agartala CSE.</li>
+  <li><strong>Startup / entrepreneurship:</strong> Ecosystem and peer quality matter most. IIIT Hyderabad and NIT Warangal have strong startup cultures.</li>
+</ul>
+
+<h2>JoSAA Counselling Tips for This Rank</h2>
+<ul>
+  <li>Fill all 25 option slots — upgrades happen in rounds 2–6 frequently at this rank range</li>
+  <li>Use josaa.nic.in previous year opening/closing rank data to identify realistic targets</li>
+  <li>Do not freeze in Round 1 unless you are 100% satisfied with your allotment</li>
+  <li>Also register for CSAB special rounds — supernumerary seats open after JoSAA Round 6</li>
+  <li>Register simultaneously for state counsellings (AP, TS, Karnataka, Maharashtra) — excellent additional options</li>
+  <li>Prepare two lists: "dream choices" (slightly above rank) and "safe choices" (well within rank range)</li>
+</ul>
+
+<h2>What Placement Data Actually Says</h2>
+<p>NIT placement data consistently shows that CSE at any top NIT achieves median packages of ₹12–20 LPA, while ECE ranges from ₹8–15 LPA depending on the college. The difference in placement between a Tier 1 and Tier 2 NIT narrows significantly for CSE — the skill of the individual matters more than the college tier in software recruitment. For core engineering, the gap is wider.</p>
+
+<div class="tip-box"><strong>Final advice:</strong> A rank under 10,000 is an excellent achievement. Go into JoSAA counselling with a clear priority list based on career goals, not just college brand. A thoughtful choice here shapes the next 4 years of your life significantly.</div>
+`},
+  a3:{
+    cat:'NEET Preparation · Updated 2025',
+    body:`
+<h1 id="modal-title">30-Day NEET Strategy — A Week-by-Week Plan That Actually Works</h1>
+<div class="art-meta">9 min read · Final Month Preparation · Last updated: 2025</div>
+
+<p>With 30 days remaining before NEET, you have exactly enough time to make a meaningful, measurable difference to your score — if you execute correctly. Students who gain 40–60 marks in the final month are not doing anything magical. They are following a disciplined, structured revision plan that prioritises the right content at the right time. Here is that plan, week by week.</p>
+
+<div class="warn-box"><strong>Critical warning:</strong> The single biggest mistake students make in the last month is introducing new topics. Do NOT start any new chapter after Day 1. Your 30 days are entirely for revision, mock practice, and consolidation of what you already know. New content at this stage creates confusion and hurts more than it helps.</div>
+
+<h2>Why the Last Month Matters More Than You Think</h2>
+<p>NEET rewards students who can retrieve information under pressure — not students who have studied the most total hours. The last month is about making your existing knowledge more retrievable, more accurate, and more quickly accessible. That is what revision and mock tests achieve. Every hour of genuine revision in this month is worth approximately 3 hours of first-time studying earlier in the year.</p>
+
+<h2>Week 1 — Diagnostic and Weak Zone Identification</h2>
+<p><strong>Day 1:</strong> Take a full-length NEET mock test under real exam conditions. 3 hours. Phone switched off. No breaks. Score it honestly and completely.</p>
+<ul>
+  <li>List every topic where you scored below 60% accuracy in the mock</li>
+  <li>These are your Week 1 revision targets — one weak chapter per day</li>
+  <li>For Biology weak areas: NCERT text only — every diagram, bold text, examples in boxes</li>
+  <li>For Chemistry weak areas: Physical Chemistry formula sheets + NCERT named reactions</li>
+  <li>For Physics weak areas: Formula consolidation + 20 targeted numericals per chapter</li>
+  <li><strong>Day 7:</strong> Take a second full-length mock. Measure exact improvement from Day 1. This number tells you your weekly improvement rate.</li>
+</ul>
+
+<h2>Week 2 — High-Yield Topic Revision</h2>
+<p>These are the topics that appear in NEET every single year without fail. Nail these and you gain 60–80 marks reliably:</p>
+
+<h3>Biology — 360 marks (50% of paper — your biggest opportunity)</h3>
+<ul>
+  <li>Cell Biology: All diagrams — mitochondria, chloroplast, ER, nucleus ultrastructure</li>
+  <li>Human Physiology: Heart diagram, Nephron, Brain regions, Digestive system, Breathing mechanics</li>
+  <li>Genetics: Mendelian genetics, Codominance, Sex-linked inheritance, Chromosomal disorders (Down, Turner, Klinefelter)</li>
+  <li>Plant Physiology: Photosynthesis Z-scheme, Cyclic/Non-cyclic photophosphorylation, Calvin cycle</li>
+  <li>Ecology: Biogeochemical cycles, Population growth models (logistic vs exponential), Food webs</li>
+</ul>
+
+<h3>Chemistry — 180 marks</h3>
+<ul>
+  <li>Physical: Mole concept (always present), Chemical Equilibrium (Le Chatelier), Electrochemistry (EMF calculations)</li>
+  <li>Organic: Named reactions (Aldol condensation, Cannizzaro, Hoffmann bromamide), Functional group identification tests</li>
+  <li>Inorganic: p-Block elements, d-Block properties, Coordination compounds — NCERT is completely sufficient</li>
+</ul>
+
+<h3>Physics — 180 marks</h3>
+<ul>
+  <li>Mechanics: Laws of Motion (Free body diagrams), Work-Energy theorem, Rotational Motion (Moment of Inertia)</li>
+  <li>Electricity: Current Electricity (Kirchhoff's Laws, Wheatstone bridge), Magnetic Effects, EMI (Faraday's Law)</li>
+  <li>Modern Physics: Photoelectric effect (Einstein's equation), Radioactive decay, Logic gates, Semiconductors</li>
+</ul>
+
+<h2>Week 3 — Full-Length Mock Marathon</h2>
+<ul>
+  <li>Take a complete NEET mock every 2 days — analyse every single mistake the same evening</li>
+  <li>Solve NEET 2019, 2020, 2021, 2022, 2023 actual papers under strict timed conditions</li>
+  <li>Biology questions repeat frequently — when you identify a direct repeat, mark it and memorise it</li>
+  <li>Create a personal "cheat sheet" per subject — maximum 1 page, only the things you personally keep forgetting</li>
+  <li>Morning: 20-minute review of cheat sheets using spaced repetition</li>
+</ul>
+
+<h2>Week 4 — Exam Readiness and Mental Preparation</h2>
+<ul>
+  <li>Reduce mock frequency to 1 every 3 days — protect your energy reserves</li>
+  <li>Sleep 7–8 hours every night — this is non-negotiable. Memory consolidation happens biologically during sleep</li>
+  <li>Morning review of cheat sheets: 30 minutes maximum, not more</li>
+  <li>Exam day strategy: Biology first (your highest-marks section) → Chemistry → Physics</li>
+  <li>Target 160+ question attempts minimum — skip a question only when you have zero familiarity with it</li>
+  <li>Do not introduce any new material in the last 72 hours before exam</li>
+</ul>
+
+<h2>Marks vs Expected Rank — Know Your Target</h2>
+<ul>
+  <li>680+ marks → Top 1,000 rank (AIIMS accessible)</li>
+  <li>640–679 marks → 1,000–5,000 rank (Premier Govt Medical Colleges)</li>
+  <li>600–639 marks → 5,000–20,000 rank (State Govt MBBS seats)</li>
+  <li>560–599 marks → 20,000–55,000 rank (Govt / Private MBBS)</li>
+  <li>Below 550 marks → Private / Management Quota zone</li>
+</ul>
+
+<div class="tip-box"><strong>Final mindset note:</strong> The last month is won by students who stay disciplined and do not panic. You have done the hard work for the past year. This month is about precision execution, not cramming. Protect your health, maintain your sleep schedule, and enter the exam with a calm, prepared mind.</div>
+`},
+  a4:{
+    cat:'EAPCET Guide · Updated 2025',
+    body:`
+<h1 id="modal-title">5 Mistakes That Silently Cost Rank in AP & TS EAPCET</h1>
+<div class="art-meta">7 min read · Common Mistakes · Last updated: 2025</div>
+
+<p>Every year, thousands of AP and TS EAPCET students lose between 5,000 and 25,000 ranks not because they are underprepared, but because of specific, preventable mistakes in their approach to the exam. These mistakes are not obvious — which is why they keep repeating. Here is a clear breakdown of the five most common ones and exactly how to fix each.</p>
+
+<h2>Mistake 1 — Treating Mathematics as Optional</h2>
+<p>Mathematics carries 80 out of 160 marks in Engineering EAPCET — exactly 50% of the entire paper. Yet a large number of students with a NEET background or Maths anxiety disproportionately focus their preparation on Physics and Chemistry, which together carry only 80 marks combined.</p>
+
+<div class="warn-box">A student scoring 60/80 in Maths vs 40/80 has a rank difference of 15,000–25,000 in a competitive year. Maths is the single biggest rank determinant — not Physics, not Chemistry.</div>
+
+<p>The fix is straightforward: allocate at least 50–55% of your daily preparation time to Mathematics. Focus specifically on Calculus (Integration and Differentiation), Coordinate Geometry (Circles, Parabola, Ellipse), and Algebra (Matrices, Determinants, Permutation/Combination). These three areas alone cover ~65% of the EAPCET Maths section.</p>
+
+<h2>Mistake 2 — Using NCERT as the Only Source</h2>
+<p>Both AP EAPCET and TS EAPCET are based on the Intermediate (Class 11–12) Board syllabus of their respective states — not purely on NCERT. While there is significant overlap, there are chapter-level divergences in topic coverage, formula notation, and reaction mechanisms in some Chemistry chapters.</p>
+<ul>
+  <li>Primary resource must be the AP or TS Intermediate Board textbook — not NCERT alone</li>
+  <li>NCERT can be used as a supplementary resource for concept clarity, but should never replace the Board book</li>
+  <li>This is especially critical for Chemistry Organic mechanisms and Mathematics notation</li>
+</ul>
+
+<h2>Mistake 3 — Ignoring Intermediate Percentage (AP EAPCET Only)</h2>
+<p>The AP EAPCET rank formula is: <strong>Final Score = (0.75 × EAPCET Normalized Marks) + (0.25 × Intermediate Percentage)</strong>. This means a full 25% of your final rank score comes directly from your Class 12 Intermediate board performance — completely independent of your EAPCET exam score.</p>
+<ul>
+  <li>A student with 92% in Intermediate vs 80% gains (0.25 × 12) = 3.0 extra composite score points</li>
+  <li>Over 3.5 lakh candidates, 3 composite score points can shift rank by 5,000–10,000 positions</li>
+  <li>Many students focus entirely on EAPCET preparation while neglecting Intermediate — this is a costly strategic error</li>
+</ul>
+<p>The fix: treat your Intermediate board exams with the same seriousness as EAPCET itself. A 90% board result combined with a moderate EAPCET score can outrank a student with a higher EAPCET score but poor board marks.</p>
+
+<h2>Mistake 4 — Not Practising Timed Papers</h2>
+<p>EAPCET = 160 questions in 3 hours = exactly 67.5 seconds per question on average. Students who have not practised full-length timed papers regularly often find themselves with 25–30 questions unread when time runs out. This alone can cost 15,000–25,000 ranks depending on which questions are left out.</p>
+<ul>
+  <li>Practise full 160-question papers under strict time conditions at least twice per week in the final month</li>
+  <li>Optimal section order: Maths first (hardest, needs fresh mind) → Physics → Chemistry (easiest to score quickly)</li>
+  <li>If a question takes more than 90 seconds, mark it and move on — return only if time permits</li>
+  <li>Target completion of all 160 questions within 2 hours 45 minutes, leaving 15 minutes for review</li>
+</ul>
+
+<h2>Mistake 5 — Not Planning Counselling Until After Results</h2>
+<p>Many students miss their preferred college not because of rank but because they did not register on time, did not understand the counselling process, or missed a critical round. EAPCET counselling has multiple rounds with strict timelines.</p>
+<ul>
+  <li>Bookmark eapcet.apsche.ap.gov.in and tsche.ac.in today — check them daily during results and counselling season</li>
+  <li>Understand the difference between Category-A (state government quota — 75% of seats) and Category-B (management quota)</li>
+  <li>Government seats are significantly cheaper and more respected — prioritise Category-A in all rounds</li>
+  <li>Attend every round including Spot Admission — excellent seats open in rounds 3–5 as students withdraw</li>
+</ul>
+
+<div class="tip-box"><strong>Summary fix:</strong> Prioritise Mathematics daily, use Board textbooks as primary resources, treat your Intermediate % seriously (for AP EAPCET), practise timed full papers, and plan your counselling well in advance. Fix these five areas and a 10,000–20,000 rank improvement is realistic in the final preparation month.</div>
+`},
+  a5:{
+    cat:'JEE Advanced · Updated 2025',
+    body:`
+<h1 id="modal-title">From JEE Main to JEE Advanced — How to Bridge the Gap</h1>
+<div class="art-meta">8 min read · Advanced Strategy · Last updated: 2025</div>
+
+<p>Clearing JEE Main and qualifying for JEE Advanced is one of the most important academic milestones in any engineering student's journey. But many students who perform well in JEE Main are completely unprepared for how fundamentally different JEE Advanced is — and end up with disappointing results not because of knowledge gaps, but because of the wrong preparation approach. This article tells you exactly what changes and how to adapt.</p>
+
+<h2>Why JEE Advanced Is a Different Exam Entirely</h2>
+<p>JEE Main tests your ability to recall standard formulas and apply them quickly under time pressure. A question that takes 2–3 minutes in JEE Main format can be done with pattern recognition alone. JEE Advanced is different: it tests your ability to construct novel solutions to problems that have no direct precedent in your textbook. The mental skill required is fundamentally different.</p>
+<ul>
+  <li>Questions require 6–12 minutes each — not 2–3 minutes like JEE Main</li>
+  <li>Multi-correct type: selecting one answer when two are correct gives zero marks — not partial credit</li>
+  <li>Integer answer type: no options at all — answer must be exact</li>
+  <li>Negative marking in MCQ sections: wrong Multi-correct answers carry −2 marks</li>
+  <li>Both Paper 1 and Paper 2 are mandatory — total 6 hours of examination across a single day</li>
+</ul>
+
+<div class="warn-box"><strong>Common and costly mistake:</strong> Continuing JEE Main preparation patterns for JEE Advanced — speed drills, solving 50 MCQs in 60 minutes, covering maximum topics. This is precisely the wrong approach. JEE Advanced rewards depth over breadth and patience over speed.</div>
+
+<h2>The Subject-Wise Shift You Must Make</h2>
+
+<h3>Physics — Go Deeper, Not Faster</h3>
+<ul>
+  <li><strong>HC Verma Parts 1 and 2</strong> — the gold standard. Every concept must be understood mechanistically, not memorised</li>
+  <li>Irodov's Problems in General Physics — selective chapters: Mechanics, Electrostatics, Optics</li>
+  <li>Focus areas frequently tested: Optics (geometric + wave), Modern Physics, Fluid Mechanics, Thermodynamics</li>
+  <li>Practise drawing free body diagrams and circuit diagrams from scratch — Advanced questions often start from blank page</li>
+</ul>
+
+<h3>Mathematics — Manipulation Depth Required</h3>
+<ul>
+  <li>Cengage series for Calculus, Algebra, Coordinate Geometry — builds the manipulation skill Advanced tests</li>
+  <li>Advanced-specific topics: Functional equations, Advanced Integration techniques, Complex analysis, 3D Geometry</li>
+  <li>Probability with conditional probability chains appears regularly and is a rank differentiator</li>
+  <li>Number theory and combinatorics questions appear — areas often neglected in JEE Main preparation</li>
+</ul>
+
+<h3>Chemistry — Mechanism Over Pattern</h3>
+<ul>
+  <li>Organic: VK Jaiswal — mechanism-based reasoning is tested, not reaction memorisation</li>
+  <li>Inorganic: NCERT read line by line — qualitative analysis sections and coordination chemistry appear</li>
+  <li>Physical: Advanced thermodynamics (Gibbs energy, entropy), Electrochemical cell calculations with multiple unknowns</li>
+</ul>
+
+<h2>How to Use Previous Papers — The Most Important Resource</h2>
+<p>JEE Advanced papers from 2010–2024 are available freely and represent the single most valuable preparation resource. There are 30 papers total (Paper 1 + Paper 2 × 15 years). Solving these in chronological order, under strict 3-hour conditions, and deeply analysing every wrong or skipped answer is the most effective strategy available.</p>
+<ul>
+  <li>Solve papers chronologically — difficulty has evolved and patterns become visible</li>
+  <li>For every wrong answer: understand the solution fully, then independently solve 3 similar problems</li>
+  <li>Track topic frequency across years — this reveals your highest-priority revision areas</li>
+  <li>Time yourself strictly — over-time solutions don't count in the actual exam</li>
+</ul>
+
+<h2>Rank vs Marks — Know Your Target</h2>
+<ul>
+  <li>220+ marks → Top ~500 rank (IIT Bombay / Delhi CSE accessible)</li>
+  <li>190–219 → ~500–2,000 rank (Old IITs top branches)</li>
+  <li>160–189 → ~2,000–6,000 rank (Old IITs most branches)</li>
+  <li>130–159 → ~6,000–12,000 rank (New IITs good branches)</li>
+  <li>100–129 → ~12,000–18,000 rank (New IITs all branches)</li>
+</ul>
+
+<h2>The Mental Game</h2>
+<ul>
+  <li>Expect to feel lost in the first 3–4 Advanced mocks — this is completely normal and expected</li>
+  <li>Never compare your Advanced mock score with your JEE Main score — they measure different cognitive skills</li>
+  <li>Students who crack JEE Advanced are not more intelligent — they are more patient with hard problems</li>
+  <li>5 focused hours of Advanced preparation daily for 6–8 weeks is the optimal preparation regime</li>
+  <li>Mental recovery between sessions is as important as the preparation itself</li>
+</ul>
+
+<div class="tip-box"><strong>Final thought:</strong> JEE Advanced rewards intellectual courage — the ability to sit with a genuinely hard problem for 8 minutes without panicking, and to construct a solution from first principles. This is a learnable skill. Students who develop it through deliberate practice with difficult problems are the ones who succeed. The shift from JEE Main to Advanced is as much mental as it is academic.</div>
+`}
+};
+
+/* ── MODAL ── */
+function openArt(id){
+  const a=ARTS[id];if(!a)return;
+  document.getElementById('modal-cat').textContent='// '+a.cat;
+  document.getElementById('modal-body').innerHTML=a.body;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.querySelector('.modal-wrap').scrollTop=0;
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('modal').addEventListener('click',e=>{
+  if(e.target===document.getElementById('modal')||e.target===document.querySelector('.modal-wrap'))closeModal();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+</script>
+</body>
+</html>
